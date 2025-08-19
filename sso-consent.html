@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - SSO Authentication</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .loading-spinner {
+            border-top-color: #1a1a1a;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-start items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="w-full max-w-lg bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-gray-200 text-center">
+            <h1 class="text-3xl font-light text-gray-900">Connecting to JLR ID</h1>
+            <div class="loading-spinner w-12 h-12 border-4 border-gray-200 rounded-full mx-auto my-6"></div>
+            <p class="text-gray-600">We're securely retrieving your account information from JLR ID...</p>
+            
+            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 text-left mt-8">
+                <h3 class="font-semibold text-gray-800 mb-3">We will access:</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Your basic profile information (name, email)</span></li>
+                    <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Vehicle registration details</span></li>
+                    <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Existing JLR finance and insurance products</span></li>
+                    <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Service history and warranty information</span></li>
+                </ul>
+            </div>
+            
+            <p class="text-xs text-gray-500 mt-6">
+                This information helps us provide you with a personalized Total Care experience. You can manage your data preferences in account settings.
+            </p>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-transparent text-gray-500 text-xs text-center py-4">
+        <p>© 2025 Jaguar Land Rover. All rights reserved. | Total Care Digital Platform</p>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+
+        // Simulate SSO authentication process for existing customers
+        setTimeout(() => {
+            // Store customer context for existing customer with comprehensive data
+            localStorage.setItem('customerType', 'existing');
+            localStorage.setItem('signInMethod', 'jlr-id');
+            localStorage.setItem('customerEmail', 'michael.thompson@email.com');
+            localStorage.setItem('customerName', 'Michael Thompson');
+            
+            // Set flag to simulate existing customer with dashboard data
+            localStorage.setItem('existingCustomerDashboard', 'true');
+            
+            // Navigate directly to customer portal dashboard (NOT finance processing)
+            window.location.href = 'customer-portal.html';
+        }, 3000);
+    </script>
+</body>
+</html>

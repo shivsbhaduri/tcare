@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Welcome</title>
+    <link rel="icon" type="image/png" href="https://www.jlr.com/themes/custom/jlr_corporate_2024/favicon/jaguarlandrover/favicon.png?v=ljk6navp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            padding: 16px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 0;
+        }
+
+        .onboarding-container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 48px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            margin-bottom: 40px;
+        }
+
+        .welcome-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .welcome-icon i {
+            font-size: 36px;
+            color: #ffffff;
+        }
+
+        .welcome-section h1 {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 8px;
+        }
+
+        .order-reference {
+            background: #f8f9fa;
+            padding: 16px 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+            border-left: 4px solid #000000;
+        }
+
+        .order-reference h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .order-reference p {
+            font-size: 20px;
+            font-weight: 500;
+            color: #000000;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        /* Status Section */
+        .status-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .status-icon {
+            width: 48px;
+            height: 48px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .status-icon i {
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .status-header h2 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .status-details {
+            text-align: left;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .status-item-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .status-item-icon.completed {
+            color: #22c55e;
+        }
+
+        .status-item-icon.processing {
+            color: #f59e0b;
+        }
+
+        .status-item-icon.pending {
+            color: #cccccc;
+        }
+
+        .status-item-content {
+            flex: 1;
+        }
+
+        .status-item-content h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+            color: #000000;
+        }
+
+        .status-item-content p {
+            font-size: 12px;
+            color: #666666;
+            margin: 0;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.completed {
+            background: #22c55e;
+            color: #ffffff;
+        }
+
+        .status-badge.processing {
+            background: #f59e0b;
+            color: #ffffff;
+        }
+
+        .status-badge.pending {
+            background: #e6e6e6;
+            color: #666666;
+        }
+
+        /* Vehicle Info */
+        .vehicle-info {
+            background: #ffffff;
+            border: 2px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .vehicle-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .vehicle-image {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .vehicle-details h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            color: #000000;
+        }
+
+        .vehicle-details p {
+            font-size: 14px;
+            color: #666666;
+            margin: 0;
+        }
+
+        .vehicle-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .spec-item {
+            text-align: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .spec-item h4 {
+            font-size: 12px;
+            font-weight: 500;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .spec-item p {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000;
+            margin: 0;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: #ffffff;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .next-steps h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .next-steps p {
+            margin-bottom: 24px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .next-steps-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .next-steps-list li i {
+            color: #22c55e;
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 18px 36px;
+            font-family: inherit;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+        }
+
+        .btn i {
+            margin-left: 8px;
+        }
+
+        /* Contact Support */
+        .support-section {
+            background: #f8f9fa;
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 32px;
+        }
+
+        .support-section h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #000000;
+        }
+
+        .support-section p {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 16px;
+        }
+
+        .support-contacts {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .support-contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #000000;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #e6e6e6;
+            transition: all 0.3s ease;
+        }
+
+        .support-contact:hover {
+            border-color: #000000;
+            transform: translateY(-1px);
+        }
+
+        .support-contact i {
+            color: #666666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .onboarding-container {
+                margin: 20px;
+                padding: 32px 24px;
+            }
+
+            .welcome-section h1 {
+                font-size: 24px;
+            }
+
+            .vehicle-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .vehicle-specs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .support-contacts {
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://www.jlr.com/themes/custom/jlr_corporate_2024/favicon/jaguarlandrover/favicon.png?v=ljk6navp" alt="JLR">
+                    <span class="logo-text">Total Care</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="onboarding-container">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <div class="welcome-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h1>Welcome to JLR Total Care</h1>
+                    <p>Hello <span id="customerName">Max Mustermann</span>!</p>
+                    <p>Thank you for choosing Jaguar Land Rover finance.</p>
+                    
+                    <div class="order-reference">
+                        <h3>Your Order Reference</h3>
+                        <p id="orderReference">JLR-2025-001236</p>
+                    </div>
+                </div>
+
+                <!-- Vehicle Information -->
+                <div class="vehicle-info">
+                    <div class="vehicle-header">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm9a5NT-9oj9grrdD5MHU7HFKgnp0MsdnKYQ&s" alt="Range Rover Evoque" class="vehicle-image">
+                        <div class="vehicle-details">
+                            <h3>Range Rover Evoque MY25</h3>
+                            <p>Your selected vehicle</p>
+                        </div>
+                    </div>
+                    
+                    <div class="vehicle-specs">
+                        <div class="spec-item">
+                            <h4>Engine</h4>
+                            <p>2.0L Petrol</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Power</h4>
+                            <p>249 HP</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Finance</h4>
+                            <p>PCP</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Monthly</h4>
+                            <p>€399</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Status -->
+                <div class="status-section">
+                    <div class="status-header">
+                        <div class="status-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h2>Application Status</h2>
+                    </div>
+                    
+                    <div class="status-details">
+                        <div class="status-item">
+                            <div class="status-item-icon completed">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="status-item-content">
+                                <h4>Application Submitted</h4>
+                                <p>Your finance application has been received</p>
+                            </div>
+                            <div class="status-badge completed">Completed</div>
+                        </div>
+                        
+                        <div class="status-item">
+                            <div class="status-item-icon processing">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="status-item-content">
+                                <h4>Finance Review</h4>
+                                <p>BNP Paribas is reviewing your application</p>
+                            </div>
+                            <div class="status-badge processing">Processing</div>
+                        </div>
+                        
+                        <div class="status-item">
+                            <div class="status-item-icon pending">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div class="status-item-content">
+                                <h4>Insurance Setup</h4>
+                                <p>Free insurance will be activated upon approval</p>
+                            </div>
+                            <div class="status-badge pending">Pending</div>
+                        </div>
+                        
+                        <div class="status-item">
+                            <div class="status-item-icon pending">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div class="status-item-content">
+                                <h4>Vehicle Delivery</h4>
+                                <p>Scheduled after finance completion</p>
+                            </div>
+                            <div class="status-badge pending">Pending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="next-steps">
+                    <h3>What Happens Next?</h3>
+                    <p>We'll keep you updated on your application progress. Here's what to expect:</p>
+                    
+                    <ul class="next-steps-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Finance decision within 24-48 hours
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Email and SMS notifications for all updates
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Free insurance activation upon approval
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Delivery coordination from your retailer
+                        </li>
+                    </ul>
+                    
+                    <button class="btn" onclick="proceedToNextStep()">
+                        Simulate Finance Approval
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Support Section -->
+                <div class="support-section">
+                    <h4>Need Help?</h4>
+                    <p>Our customer service team is available 24/7 to assist with your application.</p>
+                    
+                    <div class="support-contacts">
+                        <a href="tel:+498001234567" class="support-contact">
+                            <i class="fas fa-phone"></i>
+                            +49 800 123 4567
+                        </a>
+                        <a href="mailto:support@jlr-totalcare.de" class="support-contact">
+                            <i class="fas fa-envelope"></i>
+                            Email Support
+                        </a>
+                        <a href="#" class="support-contact" onclick="openLiveChat()">
+                            <i class="fas fa-comments"></i>
+                            Live Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function proceedToNextStep() {
+            // Store the current context
+            localStorage.setItem('financeApproved', 'true');
+            localStorage.setItem('customerJourneyStep', 'insurance-selection');
+            
+            // Navigate to the insurance selection (existing journey)
+            window.location.href = 'customer-portal.html#driveaway';
+        }
+
+        function openLiveChat() {
+            // Simulate opening live chat
+            alert('Live chat would open here in a real implementation');
+        }
+
+        // Update displayed information from URL parameters and localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderRef = urlParams.get('ref') || localStorage.getItem('orderReference') || 'JLR-2025-001236';
+            const customerName = localStorage.getItem('customerName') || 'Max Mustermann';
+            
+            // Update DOM elements
+            document.getElementById('orderReference').textContent = orderRef;
+            document.getElementById('customerName').textContent = customerName.split(' ')[0]; // First name only
+            
+            // Store for later use
+            localStorage.setItem('orderReference', orderRef);
+            localStorage.setItem('customerName', customerName);
+        });
+
+        // Simulate real-time status updates
+        let statusUpdateInterval;
+        
+        function startStatusUpdates() {
+            // This would connect to real-time updates in production
+            statusUpdateInterval = setInterval(() => {
+                // Simulate status changes for demo purposes
+                console.log('Checking for status updates...');
+            }, 30000); // Check every 30 seconds
+        }
+
+        // Cleanup
+        window.addEventListener('beforeunload', function() {
+            if (statusUpdateInterval) {
+                clearInterval(statusUpdateInterval);
+            }
+        });
+
+        // Start status monitoring
+        startStatusUpdates();
+    </script>
+</body>
+</html>

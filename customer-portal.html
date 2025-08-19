@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Customer Portal</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* Custom styles for selected product cards */
+        .product-card.selected {
+            border-color: #1a1a1a;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .product-card {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="customer-portal.html" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+                <nav id="mainNav" class="hidden md:flex md:space-x-8">
+                    <a href="#" onclick="showPage('dashboardPage', event)" class="nav-link font-semibold text-white border-b-2 border-white px-1 pt-1 text-sm">Dashboard</a>
+                    <a href="#" onclick="showPage('supportPage', event)" class="nav-link font-medium text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 pt-1 text-sm">Support</a>
+                    <a href="#" onclick="showPage('accountPage', event)" class="nav-link font-medium text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 pt-1 text-sm">Account</a>
+                </nav>
+                 <div class="user-info flex items-center gap-4">
+                    <div class="notifications-icon relative cursor-pointer" onclick="toggleNotifications()">
+                        <i data-feather="bell" class="text-white"></i>
+                        <div class="notification-badge absolute -top-1 -right-1 bg-red-600 text-white w-4 h-4 rounded-full text-xs flex items-center justify-center">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-16 flex-grow">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Free Driveaway + Ancillary Products (For New Customers) -->
+            <div id="driveawayPage" class="page max-w-7xl mx-auto">
+                 <div class="text-center mb-12">
+                     <h2 class="text-3xl font-light text-gray-800">Your Finance is Approved!</h2>
+                     <p class="mt-2 text-gray-600">Secure your protection package now. Start with our complimentary driveaway insurance.</p>
+                 </div>
+                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                    <div class="lg:col-span-3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Driveaway Card - UPDATED COLOR -->
+                            <div class="product-card selected border-2 border-green-500 bg-green-50 rounded-xl p-6 flex flex-col cursor-not-allowed">
+                                 <h3 class="font-semibold text-lg text-green-900">JLR Driveaway Insurance</h3>
+                                 <p class="font-semibold text-xl text-green-800">FREE</p>
+                                 <p class="text-sm text-green-700 mt-2 flex-grow">Basic comprehensive coverage to get you on the road.</p>
+                                 <div class="mt-4 pt-4 border-t border-green-200 text-sm font-semibold text-green-900 flex items-center justify-between">
+                                    <span>Included</span>
+                                    <div class="bg-green-600 text-white rounded-full h-6 w-6 flex items-center justify-center">
+                                        <i data-feather="check" class="w-4 h-4"></i>
+                                    </div>
+                                 </div>
+                                <input type="checkbox" id="driveaway-checkbox" checked class="hidden">
+                            </div>
+                            <!-- Ancillary Cards -->
+                            <div class="product-card border-2 border-gray-200 hover:border-gray-900 bg-white rounded-xl p-6 flex flex-col cursor-pointer" onclick="toggleAncillary('gap', this)">
+                                <h3 class="font-semibold text-lg">GAP Insurance</h3>
+                                <p class="text-gray-900 font-semibold text-xl">€25<span class="text-base font-normal text-gray-600">/month</span></p>
+                                <p class="text-sm text-gray-600 mt-2 flex-grow">Covers the gap between insurance payout and finance settlement.</p>
+                                <div class="mt-4 pt-4 border-t border-gray-200 text-sm font-semibold text-gray-900 flex items-center justify-between">
+                                    <span>Add to my protection</span>
+                                    <div class="border-2 border-gray-300 text-white rounded-full h-6 w-6 flex items-center justify-center">
+                                        <i data-feather="plus" class="w-4 h-4 text-gray-500"></i>
+                                    </div>
+                                 </div>
+                                <input type="checkbox" id="gap-checkbox" class="hidden">
+                            </div>
+                            <div class="product-card border-2 border-gray-200 hover:border-gray-900 bg-white rounded-xl p-6 flex flex-col cursor-pointer" onclick="toggleAncillary('warranty', this)">
+                                <h3 class="font-semibold text-lg">Extended Warranty</h3>
+                                <p class="text-gray-900 font-semibold text-xl">€45<span class="text-base font-normal text-gray-600">/month</span></p>
+                                <p class="text-sm text-gray-600 mt-2 flex-grow">Extended mechanical and electrical protection for peace of mind.</p>
+                                 <div class="mt-4 pt-4 border-t border-gray-200 text-sm font-semibold text-gray-900 flex items-center justify-between">
+                                    <span>Add to my protection</span>
+                                    <div class="border-2 border-gray-300 text-white rounded-full h-6 w-6 flex items-center justify-center">
+                                        <i data-feather="plus" class="w-4 h-4 text-gray-500"></i>
+                                    </div>
+                                 </div>
+                                 <input type="checkbox" id="warranty-checkbox" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="lg:sticky top-24 self-start">
+                         <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                             <h3 class="text-lg font-semibold mb-4">Monthly Protection Package</h3>
+                             <div id="packageSummary" class="space-y-2 text-sm"></div>
+                             <div class="mt-4 pt-4 border-t border-gray-200">
+                                 <div class="flex justify-between font-bold text-lg">
+                                     <span>Total Monthly Cost:</span>
+                                     <span id="totalCost">€0.00</span>
+                                 </div>
+                             </div>
+                             <button class="mt-6 w-full bg-gray-900 text-white font-medium py-3 rounded-lg hover:bg-gray-700 transition-colors text-sm uppercase tracking-wider" onclick="proceedToInsuranceQuestions()">Continue</button>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- Insurance Questions -->
+            <div id="insuranceQuestionsPage" class="page max-w-3xl mx-auto">
+                 <div class="text-center mb-12">
+                     <h2 class="text-3xl font-light">Insurance Information</h2>
+                     <p class="mt-2 text-gray-600">A few more details to provide an accurate quote.</p>
+                 </div>
+                 <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div><label for="vrnInput" class="block text-sm font-medium text-gray-700 mb-1">Vehicle Registration</label><input type="text" id="vrnInput" placeholder="AB12 CDE" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                        <div><label for="evbNumber" class="block text-sm font-medium text-gray-700 mb-1">EVB Number (Optional)</label><input type="text" id="evbNumber" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Additional Drivers?</label><select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"><option>No, just me</option><option>Yes, 1 additional driver</option></select></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Overnight Parking</label><select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"><option>Private garage</option><option>Private driveway</option></select></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Annual Mileage</label><select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"><option>Under 10,000 km</option><option>10,000 - 20,000 km</option></select></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">No Claims Discount</label><select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"><option>0 years</option><option>5+ years</option></select></div>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button class="bg-gray-900 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors text-sm uppercase tracking-wider" onclick="showUpsellModal()">Get My Quote</button>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Final Summary & Payment -->
+            <div id="summaryPage" class="page max-w-3xl mx-auto">
+                 <div class="text-center mb-12">
+                     <h2 class="text-3xl font-light">Complete Your Purchase</h2>
+                     <p class="mt-2 text-gray-600">Review and pay for your selected insurance products.</p>
+                 </div>
+                 <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                     <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg mb-8">
+                        <h3 class="font-semibold text-lg text-blue-800 mb-3">Order Summary</h3>
+                        <div id="finalSummaryItems" class="space-y-2 text-sm"></div>
+                        <div class="flex justify-between font-bold text-lg mt-4 pt-4 border-t border-blue-200">
+                            <span>Total Monthly Payment:</span>
+                            <span id="finalTotalAmount">€0</span>
+                        </div>
+                     </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                         <div>
+                            <h3 class="font-semibold text-lg mb-3">Payment Information</h3>
+                            <div class="space-y-4">
+                                <div><label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label><input type="text" placeholder="•••• •••• •••• 1234" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Expiry</label><input type="text" placeholder="MM/YY" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">CVC</label><input type="text" placeholder="•••" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                                </div>
+                            </div>
+                         </div>
+                         <div>
+                            <h3 class="font-semibold text-lg mb-3">Billing Address</h3>
+                            <div class="space-y-4">
+                                <div><label class="block text-sm font-medium text-gray-700 mb-1">Street</label><input type="text" value="Musterstraße 123" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">City</label><input type="text" value="Berlin" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label><input type="text" value="10115" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900"></div>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="mt-8 text-center">
+                        <button class="bg-gray-900 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors text-sm uppercase tracking-wider" onclick="completePayment()">Complete Payment</button>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Dashboard (For Existing Customers) -->
+            <div id="dashboardPage" class="page">
+                <div class="mb-8">
+                    <h1 id="welcomeMessage" class="text-3xl md:text-4xl font-bold text-gray-900">Welcome back, Michael</h1>
+                    <p class="mt-2 text-lg text-gray-600">Manage all your JLR vehicles and protection products.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-8" id="vehiclesList">
+                        <!-- Vehicles will be populated by JavaScript -->
+                    </div>
+                    <div class="lg:sticky top-24 self-start">
+                        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                            <div class="space-y-3">
+                                <button class="w-full text-left bg-gray-900 text-white font-medium py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors flex items-center gap-3" onclick="navigateToClaimsPortal()"><i data-feather="file-plus" class="w-5 h-5"></i> File a Claim</button>
+                                <button class="w-full text-left bg-white border border-gray-300 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-3" onclick="downloadAllDocuments()"><i data-feather="download" class="w-5 h-5"></i> Download Documents</button>
+                                <button class="w-full text-left bg-white border border-gray-300 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-3" onclick="showPage('supportPage')"><i data-feather="message-square" class="w-5 h-5"></i> Contact Support</button>
+                                <button class="w-full text-left bg-white border border-gray-300 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-3" onclick="showPage('accountPage')"><i data-feather="settings" class="w-5 h-5"></i> Account Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Page -->
+            <div id="supportPage" class="page max-w-4xl mx-auto">
+                 <div class="text-center mb-12">
+                     <h2 class="text-3xl font-light">Support</h2>
+                     <p class="mt-2 text-gray-600">Get help with your JLR Total Care services.</p>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                        <h3 class="font-semibold text-xl mb-4">Contact Options</h3>
+                        <div class="space-y-4">
+                            <div><h4 class="font-semibold">Phone Support</h4><p>+49 800 123 4567</p><p class="text-sm text-gray-500">Mon-Fri: 8:00 - 18:00</p></div>
+                            <div><h4 class="font-semibold">Email Support</h4><p>support@jlr-totalcare.de</p><p class="text-sm text-gray-500">Response within 24 hours</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                        <h3 class="font-semibold text-xl mb-4">Frequently Asked Questions</h3>
+                        <div class="space-y-2 text-sm">
+                            <details class="p-2 rounded-md hover:bg-gray-50"><summary class="font-medium cursor-pointer">How do I file a claim?</summary><p class="pt-2 text-gray-600">You can file a claim directly through your dashboard or by calling our claims hotline.</p></details>
+                            <details class="p-2 rounded-md hover:bg-gray-50"><summary class="font-medium cursor-pointer">How do I update my payment method?</summary><p class="pt-2 text-gray-600">Visit the Account section in your dashboard or contact customer support.</p></details>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Account Page -->
+            <div id="accountPage" class="page max-w-4xl mx-auto">
+                 <div class="text-center mb-12">
+                     <h2 class="text-3xl font-light">Account Settings</h2>
+                     <p class="mt-2 text-gray-600">Manage your JLR Total Care account preferences.</p>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                        <h3 class="font-semibold text-xl mb-4">Personal Information</h3>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label><input type="text" id="accountName" value="Michael Thompson" class="w-full p-3 border border-gray-300 rounded-md"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Email</label><input type="email" id="accountEmail" value="michael.thompson@email.com" class="w-full p-3 border border-gray-300 rounded-md"></div>
+                            <button class="w-full bg-gray-900 text-white font-medium py-3 rounded-lg hover:bg-gray-700 mt-4" onclick="updateAccountInfo()">Update Information</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                        <h3 class="font-semibold text-xl mb-4">Preferences</h3>
+                        <div class="space-y-4">
+                             <label class="flex items-center"><input type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"><span class="ml-2 text-sm">Email notifications</span></label>
+                             <label class="flex items-center"><input type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"><span class="ml-2 text-sm">SMS notifications</span></label>
+                             <div><label class="block text-sm font-medium text-gray-700 mb-1">Language</label><select class="w-full p-3 border border-gray-300 rounded-md"><option>English (UK)</option><option>Deutsch</option></select></div>
+                             <button class="w-full bg-gray-900 text-white font-medium py-3 rounded-lg hover:bg-gray-700 mt-4" onclick="savePreferences()">Save Preferences</button>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Upsell Modal -->
+    <div id="upsellModal" class="fixed inset-0 bg-black/60 z-30 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden">
+            <div class="bg-blue-50 p-8 text-center border-b-2 border-dashed border-blue-200">
+                <h2 class="text-2xl font-semibold text-blue-900">You're eligible for our comprehensive policy!</h2>
+                <p class="text-blue-700 mt-1">Compare the benefits of our full JLR Car Insurance over the free driveaway cover.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-8">
+                    <h3 class="font-semibold text-lg">JLR Free Driveaway</h3>
+                    <p class="text-2xl font-light text-gray-800 mt-2">FREE</p>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li class="flex items-center gap-3"><i data-feather="check" class="w-4 h-4 text-green-500"></i> Third party liability</li>
+                        <li class="flex items-center gap-3"><i data-feather="check" class="w-4 h-4 text-green-500"></i> Basic collision coverage</li>
+                        <li class="flex items-center gap-3"><i data-feather="x" class="w-4 h-4 text-red-500"></i> Theft and vandalism</li>
+                        <li class="flex items-center gap-3"><i data-feather="x" class="w-4 h-4 text-red-500"></i> Courtesy car provision</li>
+                    </ul>
+                </div>
+                <div class="p-8 bg-blue-50/50">
+                    <h3 class="font-semibold text-lg text-blue-900">JLR Comprehensive Insurance</h3>
+                    <p class="text-2xl font-semibold text-blue-800 mt-2">€68.60<span class="text-base font-normal">/month</span></p>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li class="flex items-center gap-3"><i data-feather="check" class="w-4 h-4 text-green-500"></i> All standard benefits</li>
+                        <li class="flex items-center gap-3"><i data-feather="check" class="w-4 h-4 text-green-500"></i> Theft and vandalism</li>
+                        <li class="flex items-center gap-3"><i data-feather="check" class="w-4 h-4 text-green-500"></i> Courtesy car provision</li>
+                        <li class="flex items-center gap-3"><i data-feather="check" class="w-4 h-4 text-green-500"></i> Windscreen cover</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-6 bg-gray-50 flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-gray-900 font-medium py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors" onclick="continueWithFree()">Continue with Free Driveaway</button>
+                <button class="bg-gray-900 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors" onclick="upgradeToComprehensive()">Upgrade to Comprehensive</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/60 z-30 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-2xl text-center">
+            <i data-feather="check-circle" class="w-16 h-16 text-green-500 mx-auto"></i>
+            <h2 class="text-2xl font-semibold mt-4">Congratulations!</h2>
+            <p class="mt-2 text-gray-600">Your insurance policies are now active and your vehicle is fully protected.</p>
+            <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-gray-900 font-medium py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100" onclick="downloadPolicyDocs()">Download Docs</button>
+                <button class="bg-gray-900 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700" onclick="goToDashboardFromSuccess()">Go to Dashboard</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-transparent text-gray-500 text-xs text-center py-4 mt-auto">
+        <p>© 2025 Jaguar Land Rover. All rights reserved. | Total Care Digital Platform</p>
+    </footer>
+
+    <script>
+        // Global variables
+        let selectedAncillaryProducts = [];
+        let totalAncillaryCost = 0;
+        let selectedInsuranceType = 'free';
+        let customerData = {};
+
+        // MAIN ROUTER: Initialize page based on localStorage context
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            const customerType = localStorage.getItem('customerType');
+            const financeApproved = localStorage.getItem('financeApproved');
+            const fromPurchase = localStorage.getItem('fromPurchase') === 'true';
+
+            // Scenario 1: Existing customer or a new customer who just paid
+            if (customerType === 'existing' || fromPurchase) {
+                if (fromPurchase) {
+                    loadNewCustomerData();
+                } else {
+                    loadExistingCustomerData();
+                }
+                showPage('dashboardPage');
+            } 
+            // Scenario 2: New customer whose finance was just approved
+            else if (customerType === 'new' && financeApproved === 'true') {
+                showPage('driveawayPage');
+            } 
+            // Fallback: Default to dashboard for safety (e.g., direct navigation)
+            else {
+                loadExistingCustomerData();
+                showPage('dashboardPage');
+            }
+            updatePackageSummary();
+        });
+
+        // Navigation Functions
+        function showPage(pageId, event) {
+            if (event) event.preventDefault();
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            
+            const element = document.getElementById(pageId);
+            if (element) {
+                element.classList.add('active');
+            }
+            feather.replace();
+        }
+
+        // Product Selection Flow Functions
+        function toggleAncillary(productId, cardElement) {
+            const checkbox = document.getElementById(productId + '-checkbox');
+            if (productId === 'driveaway') return; // Driveaway is always selected
+            
+            checkbox.checked = !checkbox.checked;
+            cardElement.classList.toggle('selected');
+            
+            const iconContainer = cardElement.querySelector('.flex.items-center.justify-between > div');
+            if (checkbox.checked) {
+                iconContainer.innerHTML = `<i data-feather="check" class="w-4 h-4"></i>`;
+                iconContainer.classList.remove('border-2', 'border-gray-300');
+                iconContainer.classList.add('bg-gray-900', 'text-white');
+            } else {
+                iconContainer.innerHTML = `<i data-feather="plus" class="w-4 h-4 text-gray-500"></i>`;
+                iconContainer.classList.add('border-2', 'border-gray-300');
+                iconContainer.classList.remove('bg-gray-900', 'text-white');
+            }
+            feather.replace();
+
+            const productData = {
+                'gap': { id: 'gap', name: 'GAP Insurance', price: 25, status: 'Active' },
+                'warranty': { id: 'warranty', name: 'Extended Warranty', price: 45, status: 'Active' }
+            };
+
+            if (checkbox.checked) {
+                if (!selectedAncillaryProducts.find(p => p.id === productId)) {
+                    selectedAncillaryProducts.push(productData[productId]);
+                }
+            } else {
+                selectedAncillaryProducts = selectedAncillaryProducts.filter(p => p.id !== productId);
+            }
+            updatePackageSummary();
+        }
+
+        function updatePackageSummary() {
+            const packageSummary = document.getElementById('packageSummary');
+            if (!packageSummary) return;
+
+            const totalCostEl = document.getElementById('totalCost');
+            let summaryHTML = `<div class="flex justify-between"><span>JLR Driveaway Insurance</span><span>FREE</span></div>`;
+            let total = 0;
+
+            selectedAncillaryProducts.forEach(product => {
+                summaryHTML += `<div class="flex justify-between"><span>${product.name}</span><span>€${product.price.toFixed(2)}</span></div>`;
+                total += product.price;
+            });
+
+            packageSummary.innerHTML = summaryHTML;
+            totalCostEl.textContent = `€${total.toFixed(2)}`;
+            totalAncillaryCost = total;
+        }
+
+        function proceedToInsuranceQuestions() {
+            showPage('insuranceQuestionsPage');
+        }
+
+        function showUpsellModal() {
+            document.getElementById('upsellModal').classList.remove('hidden');
+            document.getElementById('upsellModal').classList.add('flex');
+            feather.replace();
+        }
+
+        function upgradeToComprehensive() {
+            selectedInsuranceType = 'comprehensive';
+            document.getElementById('upsellModal').classList.add('hidden');
+            proceedToSummary();
+        }
+
+        function continueWithFree() {
+            selectedInsuranceType = 'free';
+            document.getElementById('upsellModal').classList.add('hidden');
+            proceedToSummary();
+        }
+
+        function proceedToSummary() {
+            showPage('summaryPage');
+            updateFinalSummary();
+        }
+
+        function updateFinalSummary() {
+            const summaryItems = document.getElementById('finalSummaryItems');
+            const totalAmount = document.getElementById('finalTotalAmount');
+            let summaryHTML = '';
+            let total = 0;
+
+            if (selectedInsuranceType === 'comprehensive') {
+                summaryHTML += `<div class="flex justify-between"><span>JLR Comprehensive Insurance</span><span>€68.60/month</span></div>`;
+                total += 68.60;
+            } else {
+                summaryHTML += `<div class="flex justify-between"><span>JLR Driveaway Insurance</span><span>FREE</span></div>`;
+            }
+
+            selectedAncillaryProducts.forEach(product => {
+                summaryHTML += `<div class="flex justify-between"><span>${product.name}</span><span>€${product.price}/month</span></div>`;
+                total += product.price;
+            });
+
+            summaryItems.innerHTML = summaryHTML;
+            totalAmount.textContent = `€${total.toFixed(2)}/month`;
+        }
+
+        function completePayment() {
+            const newUserJourneyData = {
+                name: "A New Customer",
+                email: "new.customer@email.com",
+                vehicle: {
+                    id: 'evoque-new-004', name: 'Range Rover Evoque MY25', vrn: document.getElementById('vrnInput').value || 'NEW REG', image: 'https://placehold.co/400x300/333333/FFFFFF?text=Evoque',
+                    finance: { status: 'Active', provider: 'BNP Paribas PCP', amount: '€399/month', term: '1 of 48 months', ref: 'FIN-NEW-001', monthsPaid: 1, duration: 48 },
+                    insurance: { 
+                        status: 'Active', 
+                        provider: selectedInsuranceType === 'comprehensive' ? 'JLR Comprehensive' : 'JLR Driveaway', 
+                        cost: selectedInsuranceType === 'comprehensive' ? '€68.60/month' : 'FREE', 
+                        renewal: '01/08/2026',
+                        ref: 'INS-NEW-001'
+                    },
+                    ancillaryProducts: selectedAncillaryProducts.map((p, i) => ({...p, ref: `ANC-NEW-00${i+1}`}))
+                }
+            };
+            localStorage.setItem('newUserJourney', JSON.stringify(newUserJourneyData));
+
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+            feather.replace();
+        }
+
+        function goToDashboardFromSuccess() {
+            // Set a flag to indicate the user is coming from a new purchase
+            localStorage.setItem('fromPurchase', 'true');
+            // Set customer type to existing so the dashboard loads correctly on refresh
+            localStorage.setItem('customerType', 'existing');
+            window.location.href = window.location.pathname;
+        }
+
+        function downloadPolicyDocs() {
+            alert('Downloading policy documents...');
+        }
+        
+        // --- DATA LOADING LOGIC ---
+        function loadNewCustomerData() {
+            const newUserDataString = localStorage.getItem('newUserJourney');
+            if (newUserDataString) {
+                const newUserData = JSON.parse(newUserDataString);
+                customerData = {
+                    name: newUserData.name,
+                    email: newUserData.email,
+                    vehicles: [newUserData.vehicle]
+                };
+                // Clear the flags after use
+                localStorage.removeItem('newUserJourney');
+                localStorage.removeItem('fromPurchase');
+                document.getElementById('welcomeMessage').textContent = `Welcome, ${customerData.name}`;
+                populateVehicles();
+            } else {
+                // If data is missing, default to existing customer view
+                loadExistingCustomerData();
+            }
+        }
+
+        function loadExistingCustomerData() {
+            customerData = {
+                name: 'Michael Thompson',
+                email: 'michael.thompson@email.com',
+                vehicles: [
+                    {
+                        id: 'discovery-001', name: 'Discovery Sport MY24', vrn: 'CD34 EFG', image: 'https://placehold.co/400x300/000000/FFFFFF?text=Discovery',
+                        finance: { status: 'Active', provider: 'Santander Lease', amount: '€285/month', term: '18 of 36 months', ref: 'FIN-DSC-001', monthsPaid: 18, duration: 36 },
+                        insurance: { status: 'Expiring', provider: 'Allianz Direct', cost: '€78/month', renewal: '31/12/2025', ref: 'INS-DSC-001' },
+                        ancillaryProducts: [{ id: 'gap', name: 'GAP Insurance', price: 25, status: 'Active', ref: 'ANC-DSC-001' }]
+                    },
+                    {
+                        id: 'evoque-002', name: 'Range Rover Evoque MY25', vrn: 'AB12 CDE', image: 'https://placehold.co/400x300/333333/FFFFFF?text=Evoque',
+                        finance: { status: 'Active', provider: 'BMW Purchase PCP', amount: '€399/month', term: '12 of 48 months', ref: 'FIN-EVQ-002', monthsPaid: 12, duration: 48 },
+                        insurance: { status: 'Active', provider: 'JLR Insurance', cost: '€92/month', renewal: '01/08/2026', ref: 'INS-EVQ-002' },
+                        ancillaryProducts: [
+                            { id: 'gap', name: 'GAP Insurance', price: 25, status: 'Active', ref: 'ANC-EVQ-002' },
+                            { id: 'warranty', name: 'Extended Warranty', price: 45, status: 'Active', ref: 'ANC-EVQ-003' }
+                        ]
+                    },
+                    {
+                        id: 'defender-003', name: 'Defender 110 MY23', vrn: 'XY89 ZAB', image: 'https://placehold.co/400x300/1a1a1a/FFFFFF?text=Defender',
+                        finance: { status: 'Active', provider: 'JLR Finance', amount: '€567/month', term: '24 of 60 months', ref: 'FIN-DEF-003', monthsPaid: 24, duration: 60 },
+                        insurance: null,
+                        ancillaryProducts: []
+                    }
+                ]
+            };
+            document.getElementById('welcomeMessage').textContent = `Welcome back, ${customerData.name}`;
+            populateVehicles();
+        }
+
+        // Dashboard Functions
+        function populateVehicles() {
+            const vehiclesList = document.getElementById('vehiclesList');
+            vehiclesList.innerHTML = '';
+            customerData.vehicles.forEach(vehicle => {
+                const vehicleCard = createVehicleCard(vehicle);
+                vehiclesList.appendChild(vehicleCard);
+            });
+            feather.replace();
+        }
+        
+        function getStatusBadge(status) {
+            switch (status.toLowerCase()) {
+                case 'active':
+                    return 'bg-green-100 text-green-800';
+                case 'expiring':
+                    return 'bg-yellow-100 text-yellow-800';
+                case 'pending':
+                    return 'bg-blue-100 text-blue-800';
+                default:
+                    return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function createVehicleCard(vehicle) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden';
+
+            const renderFinanceCard = (finance) => `
+                <div class="bg-gray-50/50 rounded-lg p-4 flex flex-col h-full cursor-pointer hover:bg-gray-100" onclick="showProductDetail('finance', '${vehicle.id}', '${finance.ref}')">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <i data-feather="credit-card" class="w-4 h-4 text-gray-500"></i>
+                            <h4 class="font-semibold text-sm">Finance</h4>
+                        </div>
+                        <span class="text-xs font-bold px-2 py-1 rounded-full ${getStatusBadge(finance.status)}">${finance.status}</span>
+                    </div>
+                    <p class="text-2xl font-light">${finance.amount}</p>
+                    <p class="text-xs text-gray-500 mt-1">${finance.provider}</p>
+                    <div class="flex-grow"></div>
+                    <p class="text-xs text-gray-500 mt-3">${finance.term}</p>
+                </div>`;
+
+            const renderInsuranceCard = (insurance) => {
+                if (!insurance) return `
+                    <div class="bg-gray-50/50 rounded-lg p-4 flex flex-col h-full items-center justify-center text-center cursor-pointer hover:bg-gray-100" onclick="showProductDetail('insurance-quote', '${vehicle.id}', 'new-quote')">
+                         <i data-feather="shield-off" class="w-8 h-8 text-gray-400 mb-2"></i>
+                         <h4 class="font-semibold text-sm">No Insurance</h4>
+                         <p class="mt-2 text-sm font-semibold text-blue-600">Get a Quote</p>
+                    </div>`;
+                
+                return `
+                    <div class="bg-gray-50/50 rounded-lg p-4 flex flex-col h-full cursor-pointer hover:bg-gray-100" onclick="showProductDetail('insurance', '${vehicle.id}', '${insurance.ref}')">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <i data-feather="shield" class="w-4 h-4 text-gray-500"></i>
+                                <h4 class="font-semibold text-sm">Insurance</h4>
+                            </div>
+                            <span class="text-xs font-bold px-2 py-1 rounded-full ${getStatusBadge(insurance.status)}">${insurance.status}</span>
+                        </div>
+                        <p class="text-2xl font-light">${insurance.cost}</p>
+                        <p class="text-xs text-gray-500 mt-1">${insurance.provider}</p>
+                        <div class="flex-grow"></div>
+                        <p class="text-xs text-gray-500 mt-3">Renews: ${insurance.renewal}</p>
+                    </div>`;
+            };
+            
+            const renderAncillaryCards = (products) => {
+                if (products.length === 0) return `
+                    <div class="bg-gray-50/50 rounded-lg p-4 flex flex-col h-full items-center justify-center text-center cursor-pointer hover:bg-gray-100" onclick="showProductDetail('add-protection', '${vehicle.id}', 'new-product')">
+                         <i data-feather="plus-circle" class="w-8 h-8 text-gray-400 mb-2"></i>
+                         <h4 class="font-semibold text-sm">No Protection</h4>
+                         <p class="mt-2 text-sm font-semibold text-blue-600">Add Products</p>
+                    </div>`;
+
+                return products.map(p => `
+                     <div class="bg-gray-50/50 rounded-lg p-4 flex flex-col h-full cursor-pointer hover:bg-gray-100" onclick="showProductDetail('${p.id}', '${vehicle.id}', '${p.ref}')">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <i data-feather="layers" class="w-4 h-4 text-gray-500"></i>
+                                <h4 class="font-semibold text-sm">${p.name}</h4>
+                            </div>
+                            <span class="text-xs font-bold px-2 py-1 rounded-full ${getStatusBadge(p.status)}">${p.status}</span>
+                        </div>
+                        <p class="text-2xl font-light">€${p.price}<span class="text-base font-normal text-gray-600">/month</span></p>
+                        <div class="flex-grow"></div>
+                        <p class="text-xs text-gray-500 mt-3">Active Policy</p>
+                     </div>`).join('');
+            };
+
+            card.innerHTML = `
+                <div class="p-6 flex flex-col md:flex-row items-start md:items-center gap-6 bg-white border-b border-gray-200">
+                    <img src="${vehicle.image}" alt="${vehicle.name}" class="w-full md:w-40 h-auto rounded-lg object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image';">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-xl">${vehicle.name}</h3>
+                        <p class="text-sm text-gray-500">VIN: ${vehicle.vrn}</p>
+                    </div>
+                    <button class="text-gray-500 hover:text-gray-900 ml-auto">
+                        <i data-feather="more-vertical" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        ${renderFinanceCard(vehicle.finance)}
+                        ${renderInsuranceCard(vehicle.insurance)}
+                        ${renderAncillaryCards(vehicle.ancillaryProducts)}
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function showProductDetail(productType, vehicleId, productRef) {
+            const params = new URLSearchParams({
+                type: productType,
+                vehicle: vehicleId,
+                ref: productRef
+            });
+            // Store customer data so the detail page can access it
+            localStorage.setItem('currentCustomerData', JSON.stringify(customerData));
+            window.location.href = `product-detail.html?${params.toString()}`;
+        }
+
+        function toggleNotifications() { alert('Notifications would show here.'); }
+        function navigateToClaimsPortal() { alert('Navigating to claims portal...'); }
+        function downloadAllDocuments() { alert('Downloading all documents...'); }
+        function updateAccountInfo() { alert('Account info updated.'); }
+        function savePreferences() { alert('Preferences saved.'); }
+
+    </script>
+</body>
+</html>

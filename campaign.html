@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Purchase Options</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+                <button class="text-white text-sm font-semibold flex items-center gap-2 hover:bg-gray-700 px-3 py-2 rounded-md transition-colors" onclick="goBack()">
+                    <i data-feather="arrow-left" class="w-4 h-4"></i>
+                    Back
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Campaign Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-light tracking-wide text-gray-900">Choose Your Purchase Method</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Select how you'd like to purchase your new Jaguar Land Rover vehicle and unlock exclusive insurance benefits.
+                </p>
+                <div class="mt-8 inline-flex items-center gap-3 bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg">
+                    <i data-feather="gift" class="w-5 h-5"></i>
+                    <span>Limited Time Offer: Free Insurance Coverage Included</span>
+                </div>
+            </div>
+
+            <!-- Purchase Options -->
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cash Purchase Card (Disabled) -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm opacity-60">
+                    <div class="p-8 text-center border-b border-gray-200">
+                        <i data-feather="dollar-sign" class="w-12 h-12 text-gray-400 mx-auto"></i>
+                        <h2 class="mt-4 text-2xl font-semibold text-gray-900">Cash Purchase</h2>
+                        <p class="mt-1 text-gray-500">Pay in full upfront</p>
+                        <span class="mt-4 inline-block bg-gray-200 text-gray-500 font-bold py-2 px-4 rounded-md">30 Days Free Insurance</span>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-3 text-gray-500">
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-gray-400"></i>Immediate ownership</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-gray-400"></i>No monthly payments</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-gray-400"></i>No interest charges</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-gray-400"></i>30-day comprehensive insurance</li>
+                        </ul>
+                        <button class="mt-8 w-full bg-gray-200 text-gray-500 font-bold py-3 px-6 rounded-lg cursor-not-allowed flex items-center justify-center gap-2">
+                             <i data-feather="clock" class="w-5 h-5"></i>
+                             Coming Soon
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Finance Purchase Card (Active) -->
+                <div class="bg-white border-2 border-transparent rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer ring-2 ring-gray-900" onclick="selectFinanceOption()">
+                    <div class="p-8 text-center border-b border-gray-200">
+                        <i data-feather="percent" class="w-12 h-12 text-gray-800 mx-auto"></i>
+                        <h2 class="mt-4 text-2xl font-semibold text-gray-900">Finance Purchase</h2>
+                        <p class="mt-1 text-gray-500">Flexible payment options</p>
+                        <span class="mt-4 inline-block bg-gray-900 text-white font-bold py-2 px-4 rounded-md">3 Months Free Insurance</span>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-green-500"></i>Lower upfront costs</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-green-500"></i>Flexible payment terms</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-green-500"></i>Competitive interest rates</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-green-500"></i>3-month comprehensive insurance</li>
+                            <li class="flex items-center gap-3"><i data-feather="check" class="w-5 h-5 text-green-500"></i>GAP insurance options</li>
+                        </ul>
+                        <button class="mt-8 w-full bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300 flex items-center justify-center gap-2">
+                            Explore Finance Options
+                            <i data-feather="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="mt-20 bg-white border border-gray-200 rounded-xl shadow-sm p-8">
+                 <div class="text-center">
+                    <h3 class="text-2xl font-light text-gray-900">Why Choose JLR Total Care?</h3>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Our comprehensive protection packages are designed specifically for Jaguar Land Rover vehicles, offering premium coverage with authorized repair networks and genuine parts.</p>
+                </div>
+                <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <i data-feather="shield" class="w-8 h-8 text-gray-800"></i>
+                        <h4 class="mt-3 font-semibold">Premium Protection</h4>
+                        <p class="mt-1 text-sm text-gray-600">Coverage designed for luxury vehicles</p>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <i data-feather="tool" class="w-8 h-8 text-gray-800"></i>
+                        <h4 class="mt-3 font-semibold">Authorized Network</h4>
+                        <p class="mt-1 text-sm text-gray-600">Repairs at certified JLR service centers</p>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <i data-feather="headphones" class="w-8 h-8 text-gray-800"></i>
+                        <h4 class="mt-3 font-semibold">24/7 Support</h4>
+                        <p class="mt-1 text-sm text-gray-600">Round-the-clock assistance</p>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <i data-feather="clock" class="w-8 h-8 text-gray-800"></i>
+                        <h4 class="mt-3 font-semibold">Instant Approval</h4>
+                        <p class="mt-1 text-sm text-gray-600">Quick decisions with digital-first processes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        function selectFinanceOption() {
+            // Store the selection for later use
+            localStorage.setItem('purchaseMethod', 'finance');
+            localStorage.setItem('freeInsurancePeriod', '3months');
+            
+            // Navigate to retailer portal
+            window.location.href = 'retailer-portal.html';
+        }
+
+        // Note: The onclick attribute on the card itself handles the navigation.
+        // If more complex logic were needed, this is where you'd add listeners.
+    </script>
+</body>
+</html>

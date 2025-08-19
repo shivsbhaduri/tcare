@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Motor Vehicle Insurance Invitation</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+                <button class="text-white text-sm font-semibold flex items-center gap-2 hover:bg-gray-700 px-3 py-2 rounded-md transition-colors" onclick="goBack()">
+                    <i data-feather="arrow-left" class="w-4 h-4"></i>
+                    Back
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-20 flex-grow">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-light text-gray-900">Check Your Email</h1>
+                <p class="mt-3 text-lg text-gray-600">We've sent you an exclusive invitation to enhance your vehicle protection.</p>
+            </div>
+
+            <!-- Email Container -->
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <!-- Email Client Header -->
+                <div class="bg-gray-100 p-4 border-b border-gray-200 flex items-center gap-4">
+                    <i data-feather="mail" class="w-5 h-5 text-gray-500"></i>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-sm">Inbox</h3>
+                        <p class="text-xs text-gray-500">michael.thompson@email.com</p>
+                    </div>
+                </div>
+
+                <!-- Email Content -->
+                <div class="p-6 md:p-8">
+                    <!-- Email Header -->
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <div class="space-y-2 text-sm mb-4">
+                            <div class="flex items-center"><span class="font-semibold text-gray-600 w-16">From:</span><span class="text-gray-800">JLR Total Care</span></div>
+                            <div class="flex items-center"><span class="font-semibold text-gray-600 w-16">To:</span><span class="text-gray-800">michael.thompson@email.com</span></div>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-900">Enhance Your Protection with Motor Vehicle Insurance</h2>
+                    </div>
+
+                    <!-- Email Body -->
+                    <div class="prose max-w-none">
+                        <h3 class="font-semibold">Dear Michael,</h3>
+                        <p>We hope you're enjoying your Jaguar Land Rover vehicle. As a valued customer, we're pleased to offer you the opportunity to enhance your vehicle protection with our comprehensive Motor Vehicle Insurance.</p>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg my-8 border border-gray-200">
+                            <h4 class="font-semibold">Why Choose JLR Motor Vehicle Insurance?</h4>
+                            <ul class="mt-4 space-y-2 text-sm">
+                                <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Comprehensive coverage tailored for luxury vehicles</span></li>
+                                <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Authorized JLR repair network with genuine parts</span></li>
+                                <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>24/7 premium roadside assistance</span></li>
+                                <li class="flex items-start gap-3"><i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>Courtesy vehicle during repairs</span></li>
+                            </ul>
+                        </div>
+
+                        <p>As an existing JLR customer, you're eligible for exclusive rates. Our team of specialists understands the unique requirements of your vehicle and can provide a tailored quote in minutes.</p>
+
+                        <div class="bg-gray-900 text-white p-8 rounded-lg my-8 text-center">
+                            <h4 class="font-semibold text-xl">Ready to Upgrade Your Protection?</h4>
+                            <p class="mt-2 text-gray-300">Access your personalized quote and manage your policies online.</p>
+                            <button class="mt-6 bg-white text-gray-900 font-medium py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors text-sm uppercase tracking-wider" onclick="accessAccount()">
+                                Access My Account
+                            </button>
+                        </div>
+
+                        <p>Thank you for choosing Jaguar Land Rover Total Care.</p>
+                        <p class="mt-6"><strong>Best regards,</strong><br>The JLR Total Care Team</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Context Information -->
+            <div class="mt-12 bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
+                <h3 class="font-semibold text-blue-800 flex items-center justify-center gap-2"><i data-feather="info" class="w-5 h-5"></i>Simulation Note</h3>
+                <p class="mt-1 text-sm text-blue-700">This represents the email invitation existing customers receive. Click "Access My Account" to continue the journey.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-transparent text-gray-500 text-xs text-center py-4 mt-auto">
+        <p>© 2025 Jaguar Land Rover. All rights reserved. | Total Care Digital Platform</p>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        function accessAccount() {
+            // Store context for existing customer journey
+            localStorage.setItem('customerType', 'existing');
+            localStorage.setItem('emailSource', 'mvi-invitation');
+            
+            // Navigate to enhanced sign-in page
+            window.location.href = 'enhanced-signin.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+    </script>
+</body>
+</html>

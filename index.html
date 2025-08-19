@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Premium Vehicle Protection</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+                <!-- Note: Nav can be added here if this page needs it -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl md:text-5xl font-light tracking-wide">Premium Vehicle Protection</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                Comprehensive insurance, finance, and protection solutions designed exclusively for Jaguar Land Rover vehicles.
+            </p>
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center">
+                    <i data-feather="shield" class="w-10 h-10 text-gray-400"></i>
+                    <h3 class="mt-4 text-lg font-semibold">Comprehensive Protection</h3>
+                    <p class="mt-1 text-sm text-gray-400">Full coverage for your investment</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-feather="dollar-sign" class="w-10 h-10 text-gray-400"></i>
+                    <h3 class="mt-4 text-lg font-semibold">Flexible Finance</h3>
+                    <p class="mt-1 text-sm text-gray-400">Tailored payment solutions</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-feather="headphones" class="w-10 h-10 text-gray-400"></i>
+                    <h3 class="mt-4 text-lg font-semibold">24/7 Support</h3>
+                    <p class="mt-1 text-sm text-gray-400">Always here when you need us</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Selection -->
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-light text-gray-900">How can we help you today?</h2>
+                <p class="mt-3 text-lg text-gray-600">Choose your path to premium vehicle protection.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- New Customer Card -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col text-center p-8">
+                    <i data-feather="plus-circle" class="w-12 h-12 text-gray-800 mx-auto"></i>
+                    <h3 class="mt-4 text-2xl font-semibold text-gray-900">New Customer</h3>
+                    <p class="mt-2 text-gray-600 flex-grow">
+                        Explore our finance options and get instant protection coverage with special promotional offers for your new vehicle.
+                    </p>
+                    <button onclick="startNewCustomerJourney()" class="mt-6 bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300">
+                        Start New Purchase
+                    </button>
+                </div>
+
+                <!-- Existing Customer Card -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col text-center p-8">
+                    <i data-feather="user" class="w-12 h-12 text-gray-800 mx-auto"></i>
+                    <h3 class="mt-4 text-2xl font-semibold text-gray-900">Existing Customer</h3>
+                    <p class="mt-2 text-gray-600 flex-grow">
+                        Access your account, manage your policies, or explore additional protection products for your vehicle.
+                    </p>
+                    <button onclick="startExistingCustomerJourney()" class="mt-6 bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300">
+                        Access My Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="flex flex-col items-center">
+                    <i data-feather="award" class="w-10 h-10 text-gray-800"></i>
+                    <h4 class="mt-4 text-xl font-semibold">Premium Quality</h4>
+                    <p class="mt-1 text-gray-600">Insurance and finance products designed specifically for luxury vehicles with premium service standards.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-feather="clock" class="w-10 h-10 text-gray-800"></i>
+                    <h4 class="mt-4 text-xl font-semibold">Instant Approval</h4>
+                    <p class="mt-1 text-gray-600">Quick decision making with digital-first processes for faster approval and immediate coverage.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-feather="tool" class="w-10 h-10 text-gray-800"></i>
+                    <h4 class="mt-4 text-xl font-semibold">Authorized Network</h4>
+                    <p class="mt-1 text-gray-600">Access to JLR's authorized service centers and genuine parts for repairs and maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="md:col-span-2 lg:col-span-1">
+                    <h4 class="text-lg font-semibold text-white tracking-wider">JLR Total Care</h4>
+                    <p class="mt-4 text-sm text-gray-400">Comprehensive protection and finance solutions for your Jaguar Land Rover vehicle.</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Quick Links</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Motor Insurance</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Finance Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">GAP Insurance</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Extended Warranty</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Support</h4>
+                     <ul class="mt-4 space-y-2 text-sm text-gray-400">
+                        <li>Phone: +49 800 123 4567</li>
+                        <li>Email: support@jlr-totalcare.de</li>
+                        <li>Available 24/7</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Legal</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 border-t border-gray-800 pt-8 text-center text-xs text-gray-500">
+                <p>© 2025 Jaguar Land Rover. All rights reserved.</p>
+                <p class="mt-1">Regulated by the Financial Conduct Authority.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        function startNewCustomerJourney() {
+            window.location.href = 'campaign.html';
+        }
+
+        function startExistingCustomerJourney() {
+            window.location.href = 'email-invitation.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Sign In</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            padding: 16px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.1);
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Main Content */
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 0;
+        }
+
+        .signin-container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 48px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .signin-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .signin-header h1 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .signin-header p {
+            color: #666666;
+            font-size: 16px;
+        }
+
+        /* Tab Navigation */
+        .signin-tabs {
+            display: flex;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #e6e6e6;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+
+        .signin-tab {
+            flex: 1;
+            padding: 16px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .signin-tab.active {
+            color: #000000;
+            background: #ffffff;
+            border-bottom-color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .signin-tab i {
+            font-size: 18px;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e6e6e6;
+            background: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #000000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        input.error {
+            border-color: #dc3545;
+        }
+
+        /* OTP Input */
+        .otp-container {
+            margin-bottom: 24px;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            border: 2px solid #e6e6e6;
+            border-radius: 8px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .otp-input:focus {
+            border-color: #000000;
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .otp-timer {
+            text-align: center;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .resend-link {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resend-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: #ffffff;
+            border: none;
+            padding: 18px 36px;
+            font-family: inherit;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #333333 0%, #000000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+            padding: 16px 34px;
+            font-family: inherit;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .btn-secondary:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* JLR ID Section */
+        .jlr-id-section {
+            text-align: center;
+        }
+
+        .jlr-id-btn {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: #ffffff;
+            border: none;
+            padding: 18px 24px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-family: inherit;
+        }
+
+        .jlr-id-btn:hover {
+            background: linear-gradient(135deg, #333333 0%, #000000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .jlr-id-icon {
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .jlr-id-description {
+            font-size: 12px;
+            color: #666666;
+            text-align: left;
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+
+        /* Divider */
+        .signin-divider {
+            margin: 32px 0;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .signin-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e6e6e6;
+            z-index: 1;
+        }
+
+        .signin-divider span {
+            background: #ffffff;
+            padding: 0 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Help Links */
+        .help-links {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .help-links a {
+            color: #666666;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .help-links a:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        /* Step Indicators */
+        .step-indicator {
+            display: none;
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .step-indicator.active {
+            display: block;
+        }
+
+        .step-indicator h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #000000;
+        }
+
+        .step-indicator p {
+            font-size: 14px;
+            color: #666666;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .signin-container {
+                margin: 20px;
+                padding: 32px 24px;
+            }
+
+            .signin-header h1 {
+                font-size: 24px;
+            }
+
+            .signin-tab {
+                font-size: 14px;
+                padding: 14px 12px;
+            }
+
+            .otp-inputs {
+                gap: 8px;
+            }
+
+            .otp-input {
+                width: 45px;
+                height: 55px;
+                font-size: 20px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR">
+                    <span class="logo-text">Total Care</span>
+                </div>
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="signin-container">
+            <!-- Header -->
+            <div class="signin-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to access your JLR Total Care account</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="signin-tabs">
+                <button class="signin-tab active" onclick="switchTab('email-phone')">
+                    <i class="fas fa-envelope"></i>
+                    Email/Phone
+                </button>
+                <button class="signin-tab" onclick="switchTab('jlr-id')">
+                    <i class="fas fa-id-card"></i>
+                    JLR ID
+                </button>
+            </div>
+
+            <!-- Email/Phone Tab -->
+            <div id="email-phone-tab" class="tab-content active">
+                <!-- Step 1: Contact Input -->
+                <div id="contactStep" class="signin-step">
+                    <div class="step-indicator active">
+                        <h3>Step 1: Enter Your Details</h3>
+                        <p>We'll send you a secure verification code</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMethod">Choose Sign-In Method</label>
+                        <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                            <button type="button" class="btn-secondary" id="emailMethodBtn" onclick="selectContactMethod('email')" style="flex: 1; margin-top: 0; padding: 12px;">
+                                <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                                Email
+                            </button>
+                            <button type="button" class="btn-secondary" id="phoneMethodBtn" onclick="selectContactMethod('phone')" style="flex: 1; margin-top: 0; padding: 12px; background: #f8f9fa; color: #666; border-color: #e6e6e6;">
+                                <i class="fas fa-phone" style="margin-right: 8px;"></i>
+                                Phone
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact" id="contactLabel">Email Address</label>
+                        <input type="email" id="contact" placeholder="Enter your email address">
+                    </div>
+
+                    <button class="btn" onclick="sendVerificationCode()">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                        Send Verification Code
+                    </button>
+
+                    <div class="help-links">
+                        <a href="#">Trouble signing in?</a>
+                        <a href="#">Reset password</a>
+                    </div>
+                </div>
+
+                <!-- Step 2: OTP Verification -->
+                <div id="otpStep" class="signin-step" style="display: none;">
+                    <div class="step-indicator active">
+                        <h3>Step 2: Verify Your Identity</h3>
+                        <p>Enter the 6-digit code sent to your email/phone</p>
+                    </div>
+
+                    <div class="otp-container">
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 0)">
+                            <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 1)">
+                            <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 2)">
+                            <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 3)">
+                            <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 4)">
+                            <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this, 5)">
+                        </div>
+                        <div class="otp-timer">
+                            Code expires in <span id="timer">05:00</span> | <a href="#" class="resend-link" onclick="resendCode()">Resend code</a>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="verifyCode()">
+                        <i class="fas fa-check" style="margin-right: 8px;"></i>
+                        Verify & Sign In
+                    </button>
+
+                    <button class="btn-secondary" onclick="backToContact()">
+                        <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- JLR ID Tab -->
+            <div id="jlr-id-tab" class="tab-content">
+                <div class="jlr-id-section">
+                    <button class="jlr-id-btn" onclick="signInWithJLRID()">
+                        <div style="display: flex; align-items: center;">
+                            <div class="jlr-id-icon">
+                                <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR" style="width: 20px; height: 20px;">
+                            </div>
+                            Continue with JLR ID
+                        </div>
+                        <span style="font-size: 18px;">›</span>
+                    </button>
+
+                    <div class="jlr-id-description">
+                        Sign in with JLR ID only works if the email or phone number on your JLR ID matches the one used to set up your insurance policy. This provides secure single sign-on access to all your JLR services.
+                    </div>
+
+                    <div class="signin-divider">
+                        <span>New to JLR ID?</span>
+                    </div>
+
+                    <p style="font-size: 14px; color: #666666; text-align: center; line-height: 1.6;">
+                        JLR ID gives you seamless access to all Jaguar Land Rover digital services. 
+                        <a href="#" style="color: #000000; text-decoration: none; font-weight: 500;">Learn more</a> about creating your JLR ID account.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentContactMethod = 'email';
+        let currentStep = 'contact';
+        let timerInterval;
+
+        function goBack() {
+            // Check if coming from SMS or email invitation
+            const urlParams = new URLSearchParams(window.location.search);
+            const source = urlParams.get('source');
+            
+            if (source === 'sms') {
+                window.location.href = 'sms-simulation.html';
+            } else {
+                window.location.href = 'email-invitation.html';
+            }
+        }
+
+        function switchTab(tabName) {
+            // Remove active class from all tabs and contents
+            document.querySelectorAll('.signin-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to selected tab and content
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+
+            // Reset form state when switching tabs
+            resetForm();
+        }
+
+        function selectContactMethod(method) {
+            currentContactMethod = method;
+            const emailBtn = document.getElementById('emailMethodBtn');
+            const phoneBtn = document.getElementById('phoneMethodBtn');
+            const contactInput = document.getElementById('contact');
+            const contactLabel = document.getElementById('contactLabel');
+
+            // Reset button styles
+            emailBtn.style.background = '#f8f9fa';
+            emailBtn.style.color = '#666';
+            emailBtn.style.borderColor = '#e6e6e6';
+            phoneBtn.style.background = '#f8f9fa';
+            phoneBtn.style.color = '#666';
+            phoneBtn.style.borderColor = '#e6e6e6';
+
+            if (method === 'email') {
+                emailBtn.style.background = '#000000';
+                emailBtn.style.color = '#ffffff';
+                emailBtn.style.borderColor = '#000000';
+                contactInput.type = 'email';
+                contactInput.placeholder = 'Enter your email address';
+                contactLabel.textContent = 'Email Address';
+            } else {
+                phoneBtn.style.background = '#000000';
+                phoneBtn.style.color = '#ffffff';
+                phoneBtn.style.borderColor = '#000000';
+                contactInput.type = 'tel';
+                contactInput.placeholder = 'Enter your phone number';
+                contactLabel.textContent = 'Phone Number';
+            }
+
+            contactInput.value = '';
+            contactInput.classList.remove('error');
+        }
+
+        function sendVerificationCode() {
+            const contact = document.getElementById('contact').value;
+            if (!contact) {
+                document.getElementById('contact').classList.add('error');
+                document.getElementById('contact').placeholder = 'Please enter your ' + (currentContactMethod === 'email' ? 'email' : 'phone number');
+                return;
+            }
+
+            // Show OTP step
+            document.getElementById('contactStep').style.display = 'none';
+            document.getElementById('otpStep').style.display = 'block';
+            currentStep = 'otp';
+
+            // Start timer
+            startTimer();
+
+            // Focus first OTP input
+            document.querySelector('.otp-input').focus();
+        }
+
+        function moveToNext(current, index) {
+            if (current.value.length === 1 && index < 5) {
+                document.querySelectorAll('.otp-input')[index + 1].focus();
+            }
+            
+            // Check if all fields are filled
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const allFilled = Array.from(otpInputs).every(input => input.value.length === 1);
+            
+            if (allFilled) {
+                // Auto-verify after short delay
+                setTimeout(() => {
+                    verifyCode();
+                }, 500);
+            }
+        }
+
+        function startTimer() {
+            let timeLeft = 300; // 5 minutes
+            timerInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer').textContent = 'Expired';
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function resendCode() {
+            // Reset timer
+            clearInterval(timerInterval);
+            startTimer();
+            
+            // Clear OTP inputs
+            document.querySelectorAll('.otp-input').forEach(input => {
+                input.value = '';
+            });
+            
+            // Visual feedback
+            document.querySelector('.resend-link').style.color = '#22c55e';
+            setTimeout(() => {
+                document.querySelector('.resend-link').style.color = '#000000';
+            }, 2000);
+        }
+
+        function verifyCode() {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            
+            if (otp.length !== 6) {
+                otpInputs.forEach(input => input.style.borderColor = '#dc3545');
+                return;
+            }
+
+            // Simulate verification
+            clearInterval(timerInterval);
+            
+            // Store customer context
+            const urlParams = new URLSearchParams(window.location.search);
+            const source = urlParams.get('source');
+            const orderRef = urlParams.get('ref');
+            
+            localStorage.setItem('signInMethod', currentContactMethod);
+            localStorage.setItem('customerEmail', currentContactMethod === 'email' ? 
+                document.getElementById('contact').value : 'customer@email.com');
+            
+            // UPDATED: Check if this is a new customer from SMS
+            if (source === 'sms' && orderRef) {
+                localStorage.setItem('customerType', 'new');
+                localStorage.setItem('fromSMS', 'true');
+                localStorage.setItem('orderReference', orderRef);
+                
+                // Navigate to Order ID entry page
+                window.location.href = 'order-id-entry.html?ref=' + orderRef;
+            } else {
+                // Existing customer flow
+                localStorage.setItem('customerType', 'existing');
+                window.location.href = 'customer-portal.html';
+            }
+        }
+
+        function backToContact() {
+            document.getElementById('otpStep').style.display = 'none';
+            document.getElementById('contactStep').style.display = 'block';
+            currentStep = 'contact';
+            clearInterval(timerInterval);
+        }
+
+        function signInWithJLRID() {
+            // Navigate to SSO consent page (existing functionality)
+            window.location.href = 'sso-consent.html';
+        }
+
+        function resetForm() {
+            // Reset to contact step
+            document.getElementById('contactStep').style.display = 'block';
+            document.getElementById('otpStep').style.display = 'none';
+            currentStep = 'contact';
+            
+            // Clear form data
+            document.getElementById('contact').value = '';
+            document.getElementById('contact').classList.remove('error');
+            document.querySelectorAll('.otp-input').forEach(input => {
+                input.value = '';
+                input.style.borderColor = '#e6e6e6';
+            });
+            
+            // Clear timer
+            clearInterval(timerInterval);
+            
+            // Reset contact method to email
+            selectContactMethod('email');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            selectContactMethod('email');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Product Details</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+                <button class="text-white text-sm font-semibold flex items-center gap-2 hover:bg-gray-700 px-3 py-2 rounded-md transition-colors" onclick="goBack()">
+                    <i data-feather="arrow-left" class="w-4 h-4"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-16 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Product Header -->
+            <div class="bg-gray-800 text-white p-8 rounded-xl mb-8 shadow-lg">
+                <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                    <div id="productIcon" class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i data-feather="shield" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 id="productTitle" class="text-3xl font-light">Product Details</h1>
+                        <p id="productSubtitle" class="text-gray-300 mt-1">Loading product information...</p>
+                        <div id="productStatus" class="mt-2 inline-block bg-white/20 text-white text-xs font-bold uppercase px-3 py-1 rounded-full">Active</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200">
+                        <div class="p-8">
+                            <h2 class="text-xl font-semibold mb-4">Overview</h2>
+                            <div id="productOverview" class="text-gray-600 space-y-4">
+                                <p>Loading product details...</p>
+                            </div>
+                        </div>
+                        <div id="productInfoGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8 border-t border-gray-200">
+                            <!-- Info items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                        <h2 class="text-xl font-semibold mb-4">Features & Benefits</h2>
+                        <ul id="productFeatures" class="space-y-3">
+                            <!-- Features will be populated by JavaScript -->
+                        </ul>
+                    </div>
+
+                    <div id="progressSection" class="bg-white rounded-xl shadow-lg border border-gray-200 p-8" style="display: none;">
+                        <h2 class="text-xl font-semibold mb-4">Payment Progress</h2>
+                        <div id="progressDetails">
+                             <!-- Progress details will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sticky top-24 space-y-8">
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                        <div class="space-y-3">
+                            <button id="primaryAction" class="w-full text-left bg-gray-900 text-white font-medium py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors flex items-center gap-3"><i data-feather="phone" class="w-5 h-5"></i> Contact Support</button>
+                            <button class="w-full text-left bg-white border border-gray-300 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-3" onclick="modifyProduct()"><i data-feather="edit-2" class="w-5 h-5"></i> Modify Coverage</button>
+                            <button class="w-full text-left bg-white border border-gray-300 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-3" onclick="renewProduct()"><i data-feather="refresh-cw" class="w-5 h-5"></i> Renew Policy</button>
+                            <button class="w-full text-left bg-white border border-gray-300 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-3" onclick="cancelProduct()"><i data-feather="x-circle" class="w-5 h-5"></i> Cancel Policy</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold mb-4">Documents</h3>
+                        <div id="documentsList" class="space-y-3">
+                            <!-- Documents will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-transparent text-gray-500 text-xs text-center py-4 mt-auto">
+        <p>© 2025 Jaguar Land Rover. All rights reserved. | Total Care Digital Platform</p>
+    </footer>
+
+    <script>
+        // Product data templates
+        const productTemplates = {
+            finance: {
+                icon: 'percent',
+                title: 'Vehicle Finance',
+                subtitle: 'Personal Contract Purchase Agreement',
+                overview: 'Your vehicle finance agreement provides flexible options at the end of your term, with guaranteed future value protection.',
+                features: [
+                    'Lower monthly payments compared to traditional hire purchase',
+                    'Guaranteed future value protection',
+                    'Option to return, part-exchange, or purchase at term end',
+                    'Competitive interest rates',
+                    'No early settlement fees',
+                    'Direct debit payment convenience'
+                ],
+                infoItems: [
+                    { label: 'Monthly Payment', value: '€399' },
+                    { label: 'Term Length', value: '48 months' },
+                    { label: 'APR', value: '4.9%' },
+                    { label: 'Total Amount', value: '€19,152' }
+                ],
+                documents: [
+                    { name: 'Finance Agreement', type: 'PDF', size: '245 KB' },
+                    { name: 'Payment Schedule', type: 'PDF', size: '156 KB' },
+                    { name: 'Terms & Conditions', type: 'PDF', size: '892 KB' }
+                ],
+                terms: 'This Personal Contract Purchase agreement is subject to status and available to UK residents aged 18 or over. Guarantees and indemnities may be required. Finance is provided by BNP Paribas Personal Finance.',
+                showProgress: true
+            },
+            insurance: {
+                icon: 'shield',
+                title: 'Motor Vehicle Insurance',
+                subtitle: 'Comprehensive Coverage Policy',
+                overview: 'Your motor insurance policy provides comprehensive protection for your vehicle, including theft, fire, and accident damage.',
+                features: [
+                    'Comprehensive collision and damage coverage',
+                    'Theft and vandalism protection',
+                    'Personal belongings coverage up to €1,000',
+                    '24/7 emergency roadside assistance',
+                    'Courtesy car provision during repairs',
+                    'Windscreen repair with no excess',
+                    'Europe-wide coverage for up to 90 days',
+                    'Legal expenses cover up to €100,000'
+                ],
+                infoItems: [
+                    { label: 'Monthly Premium', value: '€92' },
+                    { label: 'Policy Excess', value: '€250' },
+                    { label: 'Valid Until', value: '31/12/2025' },
+                    { label: 'No Claims Discount', value: '5 years' }
+                ],
+                documents: [
+                    { name: 'Insurance Certificate', type: 'PDF', size: '124 KB' },
+                    { name: 'Policy Schedule', type: 'PDF', size: '267 KB' },
+                    { name: 'Policy Wording', type: 'PDF', size: '1.2 MB' }
+                ],
+                terms: 'This insurance policy is underwritten by JLR Insurance Company Limited. Cover is subject to policy terms, conditions, and exclusions. Full details are available in your policy documents.',
+                showProgress: false,
+            },
+            gap: {
+                icon: 'umbrella',
+                title: 'GAP Insurance',
+                subtitle: 'Guaranteed Asset Protection',
+                overview: 'GAP Insurance covers the difference between your motor insurance settlement and the amount needed to replace your vehicle or settle your finance agreement.',
+                features: [
+                    'Covers up to €20,000 shortfall',
+                    'New vehicle replacement guarantee',
+                    'Finance settlement protection',
+                    'Invoice GAP coverage included',
+                    'No depreciation limits',
+                    'Claims handled within 5 working days'
+                ],
+                infoItems: [
+                    { label: 'Monthly Premium', value: '€25' },
+                    { label: 'Maximum Cover', value: '€20,000' },
+                    { label: 'Policy Term', value: '3 years' },
+                    { label: 'Claims Limit', value: 'Unlimited' }
+                ],
+                documents: [
+                    { name: 'GAP Certificate', type: 'PDF', size: '98 KB' },
+                    { name: 'Policy Terms', type: 'PDF', size: '445 KB' }
+                ],
+                terms: 'GAP Insurance is provided by JLR Insurance Services. Cover applies only to total loss claims settled by your motor insurer. Subject to policy terms and conditions.',
+                showProgress: false,
+            },
+            warranty: {
+                icon: 'tool',
+                title: 'Extended Warranty',
+                subtitle: 'Comprehensive Vehicle Protection',
+                overview: 'Extended warranty coverage protects your vehicle beyond the manufacturer warranty, covering mechanical and electrical components.',
+                features: [
+                    '5-year comprehensive coverage',
+                    'Mechanical and electrical component protection',
+                    'Authorised JLR repair network',
+                    '24/7 breakdown assistance',
+                    'No excess on covered repairs',
+                    'Guaranteed parts and labour',
+                    'Nationwide coverage',
+                    'Transferable to new owner'
+                ],
+                infoItems: [
+                    { label: 'Monthly Premium', value: '€45' },
+                    { label: 'Coverage Period', value: '5 years' },
+                    { label: 'Mileage Limit', value: '100,000 km' },
+                    { label: 'Excess', value: '€0' }
+                ],
+                documents: [
+                    { name: 'Warranty Certificate', type: 'PDF', size: '156 KB' },
+                    { name: 'Coverage Guide', type: 'PDF', size: '678 KB' },
+                    { name: 'Claims Process', type: 'PDF', size: '234 KB' }
+                ],
+                terms: 'Extended warranty is provided by JLR Extended Warranty Services. Coverage subject to regular servicing at authorised dealers. Full terms and exclusions apply.',
+                showProgress: false,
+            }
+        };
+
+        // Initialize page based on URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productType = urlParams.get('type');
+            const vehicleId = urlParams.get('vehicle');
+            const productRef = urlParams.get('ref');
+
+            if (productType && productTemplates[productType]) {
+                loadProductDetails(productType, vehicleId, productRef);
+            } else {
+                loadGenericProduct(productType, vehicleId, productRef);
+            }
+            feather.replace();
+        });
+
+        function loadProductDetails(productType, vehicleId, productRef) {
+            const template = productTemplates[productType];
+            
+            document.getElementById('productIcon').innerHTML = `<i data-feather="${template.icon}" class="w-10 h-10 text-white"></i>`;
+            document.getElementById('productTitle').textContent = template.title;
+            document.getElementById('productSubtitle').textContent = template.subtitle;
+            
+            document.getElementById('productOverview').innerHTML = `<p>${template.overview}</p>`;
+            
+            const infoGrid = document.getElementById('productInfoGrid');
+            infoGrid.innerHTML = '';
+            template.infoItems.forEach(item => {
+                const infoItem = document.createElement('div');
+                infoItem.className = 'bg-gray-50 p-4 rounded-lg border border-gray-200';
+                infoItem.innerHTML = `<h4 class="text-xs font-semibold text-gray-500 uppercase">${item.label}</h4><p class="text-lg font-semibold text-gray-900">${item.value}</p>`;
+                infoGrid.appendChild(infoItem);
+            });
+            
+            const featuresList = document.getElementById('productFeatures');
+            featuresList.innerHTML = '';
+            template.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-3';
+                li.innerHTML = `<i data-feather="check" class="w-4 h-4 text-green-500 mt-1 flex-shrink-0"></i><span>${feature}</span>`;
+                featuresList.appendChild(li);
+            });
+            
+            if (template.showProgress) {
+                document.getElementById('progressSection').style.display = 'block';
+                updateProgressSection(productRef);
+            }
+            
+            const documentsList = document.getElementById('documentsList');
+            documentsList.innerHTML = '';
+            template.documents.forEach(doc => {
+                const docItem = document.createElement('div');
+                docItem.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200';
+                docItem.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <i data-feather="file-text" class="w-5 h-5 text-gray-500"></i>
+                        <div>
+                            <h4 class="font-semibold text-sm">${doc.name}</h4>
+                            <p class="text-xs text-gray-500">${doc.type} • ${doc.size}</p>
+                        </div>
+                    </div>
+                    <button class="p-2 rounded-md hover:bg-gray-200" onclick="downloadDocument('${doc.name}')">
+                        <i data-feather="download" class="w-4 h-4 text-gray-600"></i>
+                    </button>
+                `;
+                documentsList.appendChild(docItem);
+            });
+            
+            setupPrimaryAction(productType);
+            feather.replace();
+        }
+
+        function updateProgressSection(productRef) {
+            const monthsPaid = 12;
+            const totalMonths = 48;
+            const monthlyAmount = 399;
+            const progressPercent = (monthsPaid / totalMonths) * 100;
+
+            document.getElementById('progressDetails').innerHTML = `
+                <div class="mb-2 flex justify-between text-sm font-medium text-gray-600">
+                    <span>Month ${monthsPaid} of ${totalMonths}</span>
+                    <span>€${monthlyAmount}/month</span>
+                </div>
+                <div class="bg-gray-200 h-3 rounded-full overflow-hidden">
+                    <div class="bg-gray-900 h-full rounded-full" style="width: ${progressPercent}%;"></div>
+                </div>
+                <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                    <div><span class="font-semibold block text-gray-500 text-xs">Amount Paid</span>€${(monthsPaid * monthlyAmount).toLocaleString()}</div>
+                    <div><span class="font-semibold block text-gray-500 text-xs">Remaining</span>€${((totalMonths - monthsPaid) * monthlyAmount).toLocaleString()}</div>
+                </div>
+            `;
+        }
+        
+        function setupPrimaryAction(productType) {
+            const primaryBtn = document.getElementById('primaryAction');
+            let icon = 'phone', text = 'Contact Support', action = 'contactSupport()';
+
+            if (productType === 'finance') {
+                icon = 'percent'; text = 'Payment Calculator'; action = 'showPaymentCalculator()';
+            } else if (productType === 'insurance') {
+                icon = 'file-plus'; text = 'File a Claim'; action = 'fileClaim()';
+            }
+            
+            primaryBtn.innerHTML = `<i data-feather="${icon}" class="w-5 h-5"></i> ${text}`;
+            primaryBtn.setAttribute('onclick', action);
+        }
+
+        function loadGenericProduct(productType, vehicleId, productRef) {
+            document.getElementById('productTitle').textContent = `${productType.charAt(0).toUpperCase() + productType.slice(1)} Product`;
+            document.getElementById('productSubtitle').textContent = `Product Reference: ${productRef}`;
+            document.getElementById('productOverview').innerHTML = `<p>This is a ${productType} product for vehicle ${vehicleId}. For detailed information, please contact our support team.</p>`;
+        }
+
+        // Action Functions
+        function goBack() { window.location.href = 'customer-portal.html'; }
+        function showPaymentCalculator() { alert('Payment calculator would open here.'); }
+        function fileClaim() { alert('Claim process would start here.'); }
+        function contactSupport() { alert('Support contact options would open here.'); }
+        function getMoreInfo() { alert('Additional product information would be displayed here.'); }
+        function modifyProduct() { alert('Product modification options would open here.'); }
+        function renewProduct() { alert('Renewal process would start here.'); }
+        function cancelProduct() { if (confirm('Are you sure you want to cancel this product?')) { alert('Cancellation process would start here.'); } }
+        function downloadDocument(docName) { alert(`Downloading ${docName}...`); }
+        function showEndOptions() { alert('End of agreement options would be displayed here.'); }
+    </script>
+</body>
+</html>

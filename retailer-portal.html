@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Retailer Portal - Total Care</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .page { display: none; }
+        .page.active { display: block; }
+        .carousel-slide { display: none; }
+        .carousel-slide.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Retailer Portal</span>
+                    </a>
+                </div>
+                <nav id="mainNav" class="hidden">
+                    <ul class="flex items-center space-x-2">
+                        <li><a href="#" onclick="showPage('orderForm', event)" class="nav-link active text-white bg-white/10 font-semibold px-3 py-2 rounded-md text-sm">New Order</a></li>
+                        <li><a href="#" onclick="showPage('applications', event)" class="nav-link text-gray-300 hover:bg-white/10 hover:text-white font-medium px-3 py-2 rounded-md text-sm">Applications</a></li>
+                        <li><a href="#" onclick="showPage('reports', event)" class="nav-link text-gray-300 hover:bg-white/10 hover:text-white font-medium px-3 py-2 rounded-md text-sm">Reports</a></li>
+                        <li><a href="#" onclick="showPage('settings', event)" class="nav-link text-gray-300 hover:bg-white/10 hover:text-white font-medium px-3 py-2 rounded-md text-sm">Settings</a></li>
+                    </ul>
+                </nav>
+                <div id="retailerInfo" class="hidden text-right text-sm text-gray-300">
+                    <div class="font-semibold text-white">Berlin Showroom</div>
+                    <div>Klaus Mueller</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Retailer Login Page -->
+        <div id="retailerLoginPage" class="page active">
+            <div class="flex items-center justify-center min-h-[calc(100vh-64px)] p-4">
+                <div class="w-full max-w-md bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-gray-200">
+                    <h1 class="text-3xl font-light text-center text-gray-900">JLR Retailer Portal</h1>
+                    <p class="mt-2 text-center text-gray-600">Secure access for authorized JLR retail partners.</p>
+                    <div class="mt-8">
+                        <button class="w-full bg-gray-900 text-white font-medium py-3 px-6 rounded-xl hover:bg-gray-700 transition-all duration-300 flex items-center justify-between text-base" onclick="signInWithRetailerSSO()">
+                            <span class="flex items-center gap-3">
+                                <span class="bg-white rounded-full p-1 inline-flex">
+                                    <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-5 w-5">
+                                </span>
+                                <span>Sign in with JLR Retailer SSO</span>
+                            </span>
+                            <i data-feather="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <p class="mt-6 text-xs text-gray-500 text-center">Access requires valid JLR retailer credentials. Contact your regional manager for assistance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Order Page -->
+        <div id="orderFormPage" class="page">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <div class="bg-gray-800 text-white p-8 rounded-xl text-center mb-8">
+                    <h1 class="text-3xl font-light">New Customer Order</h1>
+                    <p class="text-gray-300 mt-1">Create a new vehicle order and finance application.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                        <h2 class="text-xl font-semibold">Customer Order Form</h2>
+                        <div class="flex items-center gap-2">
+                            <div class="progress-step bg-gray-900 w-3 h-3 rounded-full" data-step="1"></div>
+                            <div class="progress-step bg-gray-300 w-3 h-3 rounded-full" data-step="2"></div>
+                            <div class="progress-step bg-gray-300 w-3 h-3 rounded-full" data-step="3"></div>
+                            <div class="progress-step bg-gray-300 w-3 h-3 rounded-full" data-step="4"></div>
+                        </div>
+                    </div>
+
+                    <form id="orderForm">
+                        <div class="p-6 md:p-8">
+                            <!-- Step 1: Customer Information -->
+                            <div class="carousel-slide active" data-step="1">
+                                <h3 class="text-2xl font-light text-center mb-8">Customer Information</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div><label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label><input type="text" id="firstName" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label><input type="text" id="lastName" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label><input type="email" id="email" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label><input type="tel" id="phone" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="dateOfBirth" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label><input type="date" id="dateOfBirth" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div class="md:col-span-3"><label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label><input type="text" id="address" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label><input type="text" id="city" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label><input type="text" id="postalCode" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Vehicle Selection -->
+                            <div class="carousel-slide" data-step="2">
+                                <h3 class="text-2xl font-light text-center mb-6">Vehicle Selection</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div class="vehicle-card relative border-2 border-gray-200 rounded-xl overflow-hidden cursor-pointer hover:border-gray-900 transition-all" onclick="selectVehicle('evoque', this)">
+                                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Evoque" alt="Range Rover Evoque" class="w-full h-48 object-cover">
+                                        <div class="p-4"><h4 class="font-semibold text-lg">Range Rover Evoque MY25</h4><p class="text-sm text-gray-600">Petrol • Automatic</p><div class="mt-2 font-bold text-xl">€52,950</div></div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="vehicle-card relative border-2 border-gray-200 rounded-xl overflow-hidden cursor-pointer hover:border-gray-900 transition-all" onclick="selectVehicle('velar', this)">
+                                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Velar" alt="Range Rover Velar" class="w-full h-48 object-cover">
+                                        <div class="p-4"><h4 class="font-semibold text-lg">Range Rover Velar MY25</h4><p class="text-sm text-gray-600">Hybrid Electric PHEV</p><div class="mt-2 font-bold text-xl">€89,700</div></div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="vehicle-card relative border-2 border-gray-200 rounded-xl overflow-hidden cursor-pointer hover:border-gray-900 transition-all" onclick="selectVehicle('discovery', this)">
+                                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Discovery" alt="Discovery Sport" class="w-full h-48 object-cover">
+                                        <div class="p-4"><h4 class="font-semibold text-lg">Discovery Sport MY25</h4><p class="text-sm text-gray-600">Diesel • Automatic</p><div class="mt-2 font-bold text-xl">€47,850</div></div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Finance Options -->
+                            <div class="carousel-slide" data-step="3">
+                                <h3 class="text-2xl font-light text-center mb-6">Finance Options</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="finance-option relative border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-gray-900 transition-all" onclick="selectFinance('pcp', this)">
+                                        <h4 class="font-semibold text-lg">Personal Contract Purchase</h4><p class="text-sm text-gray-600">Lower monthly payments with flexible end options.</p><div class="mt-2 font-bold text-xl">From €399/month</div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="finance-option relative border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-gray-900 transition-all" onclick="selectFinance('hp', this)">
+                                        <h4 class="font-semibold text-lg">Hire Purchase</h4><p class="text-sm text-gray-600">Own the vehicle at the end of the agreement.</p><div class="mt-2 font-bold text-xl">From €485/month</div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="finance-option relative border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-gray-900 transition-all" onclick="selectFinance('lease', this)">
+                                        <h4 class="font-semibold text-lg">Personal Lease</h4><p class="text-sm text-gray-600">All-inclusive monthly payments.</p><div class="mt-2 font-bold text-xl">From €345/month</div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="finance-option relative border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-gray-900 transition-all" onclick="selectFinance('cash', this)">
+                                        <h4 class="font-semibold text-lg">Cash Purchase</h4><p class="text-sm text-gray-600">Full payment upfront.</p><div class="mt-2 font-bold text-xl">No monthly payments</div>
+                                        <div class="check-icon hidden absolute top-4 right-4 bg-gray-900 text-white rounded-full h-8 w-8 flex items-center justify-center">
+                                            <i data-feather="check" class="w-5 h-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Additional Information -->
+                            <div class="carousel-slide" data-step="4">
+                                <h3 class="text-2xl font-light text-center mb-6">Additional Information</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div><label for="annualIncome" class="block text-sm font-medium text-gray-700 mb-1">Annual Income (€)</label><input type="text" id="annualIncome" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="employment" class="block text-sm font-medium text-gray-700 mb-1">Employment Status</label><select id="employment" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"><option>Employed Full Time</option><option>Employed Part Time</option><option>Self Employed</option><option>Retired</option></select></div>
+                                    <div><label for="deliveryDate" class="block text-sm font-medium text-gray-700 mb-1">Preferred Delivery Date</label><input type="date" id="deliveryDate" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                    <div><label for="tradeIn" class="block text-sm font-medium text-gray-700 mb-1">Trade-in Vehicle</label><select id="tradeIn" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"><option>No Trade-in</option><option>Yes - Vehicle Details to Follow</option></select></div>
+                                    <div class="md:col-span-2"><label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label><input type="text" id="notes" placeholder="Any special requirements or notes" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="bg-gray-50 p-6 border-t border-gray-200 flex justify-between items-center">
+                        <span id="stepIndicator" class="text-sm font-medium text-gray-600">Step 1 of 4: Customer Information</span>
+                        <div>
+                            <button id="prevBtn" type="button" class="hidden font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors" onclick="previousStep()">Previous</button>
+                            <button id="nextBtn" type="button" class="bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors" onclick="nextStep()">Next</button>
+                            <button id="submitBtn" type="button" class="hidden bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors" onclick="submitOrder()">Submit Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Placeholder pages for other nav items -->
+            <div id="applicationsPage" class="page"><div class="text-center p-20 bg-white rounded-xl shadow-lg">Applications Page Content</div></div>
+            <div id="reportsPage" class="page"><div class="text-center p-20 bg-white rounded-xl shadow-lg">Reports Page Content</div></div>
+            <div id="settingsPage" class="page"><div class="text-center p-20 bg-white rounded-xl shadow-lg">Settings Page Content</div></div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 z-30 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg p-8 rounded-2xl shadow-2xl text-center">
+            <i data-feather="check-circle" class="w-16 h-16 text-green-500 mx-auto"></i>
+            <h2 class="text-2xl font-semibold mt-4">Order Successfully Submitted</h2>
+            <p class="mt-2 text-gray-600">The customer order and finance application has been processed and submitted to JLR Total Care.</p>
+            <div class="mt-4 bg-gray-100 p-4 rounded-lg text-left">
+                <strong>Order Reference: <span id="orderReference"></span></strong>
+            </div>
+            <p class="mt-4 font-semibold">Customer Notification Sent</p>
+            <p class="text-sm text-gray-600">SMS and Email notifications have been sent to the customer.</p>
+            <button class="mt-6 w-full bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors" onclick="viewCustomerPortal()">Preview Customer Experience</button>
+        </div>
+    </div>
+
+    <script>
+       let currentStep = 1;
+       let selectedVehicle = null;
+       let selectedFinance = null;
+       let isLoggedIn = false;
+
+       const stepTitles = {
+           1: "Step 1 of 4: Customer Information",
+           2: "Step 2 of 4: Vehicle Selection", 
+           3: "Step 3 of 4: Finance Options",
+           4: "Step 4 of 4: Additional Information"
+       };
+
+       function signInWithRetailerSSO() {
+           setTimeout(() => {
+               isLoggedIn = true;
+               document.getElementById('mainNav').classList.remove('hidden');
+               document.getElementById('retailerInfo').classList.remove('hidden');
+               document.getElementById('retailerLoginPage').classList.remove('active');
+               document.getElementById('orderFormPage').classList.add('active');
+               feather.replace();
+           }, 500);
+       }
+
+       function showPage(pageId, event) {
+           if (!isLoggedIn) return;
+           document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+           document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active', 'bg-white/10', 'text-white');
+                link.classList.add('text-gray-300');
+           });
+           document.getElementById(pageId + 'Page').classList.add('active');
+           event.target.classList.add('active', 'bg-white/10', 'text-white');
+           event.target.classList.remove('text-gray-300');
+       }
+
+       function nextStep() {
+           if (!validateStep(currentStep)) return;
+           if (currentStep < 4) {
+               updateStepUI(currentStep, currentStep + 1);
+               currentStep++;
+               updateNavigation();
+           }
+       }
+
+       function previousStep() {
+           if (currentStep > 1) {
+               updateStepUI(currentStep, currentStep - 1, true);
+               currentStep--;
+               updateNavigation();
+           }
+       }
+       
+       function updateStepUI(from, to, isReverting = false) {
+           document.querySelector(`.carousel-slide[data-step="${from}"]`).classList.remove('active');
+           const fromProgress = document.querySelector(`.progress-step[data-step="${from}"]`);
+           fromProgress.classList.remove('bg-gray-900');
+           fromProgress.classList.add(isReverting ? 'bg-gray-300' : 'bg-green-500');
+
+           document.querySelector(`.carousel-slide[data-step="${to}"]`).classList.add('active');
+           const toProgress = document.querySelector(`.progress-step[data-step="${to}"]`);
+           toProgress.classList.add('bg-gray-900');
+           toProgress.classList.remove('bg-green-500', 'bg-gray-300');
+       }
+
+       function updateNavigation() {
+           document.getElementById('stepIndicator').textContent = stepTitles[currentStep];
+           document.getElementById('prevBtn').classList.toggle('hidden', currentStep === 1);
+           document.getElementById('nextBtn').classList.toggle('hidden', currentStep === 4);
+           document.getElementById('submitBtn').classList.toggle('hidden', currentStep !== 4);
+       }
+
+       function validateStep(step) {
+           return true; 
+       }
+
+       function selectVehicle(vehicleId, element) {
+           document.querySelectorAll('.vehicle-card').forEach(card => {
+               card.classList.remove('ring-2', 'ring-gray-900');
+               card.querySelector('.check-icon').classList.add('hidden');
+           });
+           element.classList.add('ring-2', 'ring-gray-900');
+           element.querySelector('.check-icon').classList.remove('hidden');
+           selectedVehicle = vehicleId;
+           feather.replace();
+       }
+
+       function selectFinance(financeId, element) {
+           document.querySelectorAll('.finance-option').forEach(option => {
+               option.classList.remove('ring-2', 'ring-gray-900');
+               option.querySelector('.check-icon').classList.add('hidden');
+           });
+           element.classList.add('ring-2', 'ring-gray-900');
+           element.querySelector('.check-icon').classList.remove('hidden');
+           selectedFinance = financeId;
+           feather.replace();
+       }
+
+       function submitOrder() {
+           if (!validateStep(4)) return;
+           const orderRef = `JLR-${new Date().getFullYear()}-${Math.floor(Math.random() * 900000) + 100000}`;
+           document.getElementById('orderReference').textContent = orderRef;
+           localStorage.setItem('latestOrderRef', orderRef);
+           localStorage.setItem('customerEmail', document.getElementById('email').value);
+           localStorage.setItem('customerName', document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value);
+           document.getElementById('successModal').classList.remove('hidden');
+           document.getElementById('successModal').classList.add('flex');
+           feather.replace();
+       }
+
+       function viewCustomerPortal() {
+           window.location.href = 'sms-simulation.html';
+       }
+
+       document.addEventListener('DOMContentLoaded', function() {
+           feather.replace();
+           updateNavigation();
+       });
+    </script>
+</body>
+</html>

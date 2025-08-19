@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Customer Notification</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+                 <button class="text-white text-sm font-semibold flex items-center gap-2 hover:bg-gray-700 px-3 py-2 rounded-md transition-colors" onclick="goBack()">
+                    <i data-feather="arrow-left" class="w-4 h-4"></i>
+                    Back to Portal
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-lg mx-auto">
+                <!-- Page Header -->
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-light text-gray-900">Customer Notification Sent</h1>
+                    <p class="mt-3 text-lg text-gray-600">Your customer has received an SMS with secure access to their application status.</p>
+                </div>
+
+                <!-- iPhone Simulation -->
+                <div class="mx-auto max-w-sm bg-black rounded-[40px] p-4 shadow-2xl">
+                    <div class="relative bg-gray-900 h-[640px] rounded-[30px] overflow-hidden">
+                        <!-- Notch -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-7 bg-black rounded-b-xl z-10"></div>
+                        
+                        <!-- Screen Content -->
+                        <div class="p-4 pt-10 text-white h-full flex flex-col">
+                            <!-- Status Bar -->
+                            <div class="absolute top-4 left-6 right-6 flex justify-between items-center text-xs font-bold">
+                                <span>14:32</span>
+                                <div class="flex items-center gap-1">
+                                    <i data-feather="bar-chart-2" class="w-3 h-3 -rotate-90"></i>
+                                    <i data-feather="wifi" class="w-3 h-3"></i>
+                                    <i data-feather="battery" class="w-3 h-3"></i>
+                                </div>
+                            </div>
+
+                            <!-- Messages Header -->
+                            <div class="text-center mt-2">
+                                <h2 class="font-semibold">JLR Total Care</h2>
+                                <p class="text-xs text-gray-400">+49 800 123 4567</p>
+                            </div>
+
+                            <!-- Message Container -->
+                            <div class="mt-8 flex-grow">
+                                <div class="w-11/12">
+                                    <div class="bg-blue-600 rounded-2xl rounded-bl-lg p-3">
+                                        <p class="text-sm">
+                                            Hello <span id="customerName" class="font-semibold">Michael</span>! 👋
+                                            <br><br>
+                                            Your finance application for the Range Rover Evoque is being processed.
+                                            <br><br>
+                                            <strong>Order Reference:</strong> <span id="orderRef">JLR-2025-001236</span>
+                                            <br><br>
+                                            Access your application status and claim your free insurance coverage:
+                                        </p>
+                                        <div class="mt-3 bg-gray-800/50 p-2 rounded-lg cursor-pointer" onclick="continueToCustomerJourney()">
+                                            <div class="flex items-center gap-3">
+                                                <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" class="h-8 w-8 bg-white p-1 rounded-md">
+                                                <div>
+                                                    <h4 class="font-bold text-xs">JLR Total Care Portal</h4>
+                                                    <p class="text-xs text-gray-300">Secure access to your account</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-gray-500 ml-2">Delivered</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Message Input Area -->
+                            <div class="bg-gray-700/80 rounded-full p-2 flex items-center gap-2 mt-4">
+                                <input type="text" class="bg-transparent w-full text-white text-sm placeholder-gray-400 px-2 focus:outline-none" placeholder="Text Message" readonly>
+                                <button class="bg-blue-600 rounded-full h-7 w-7 flex-shrink-0 flex items-center justify-center">
+                                    <i data-feather="arrow-up" class="w-4 h-4 text-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Context Information -->
+                <div class="mt-12 bg-white border border-gray-200 rounded-xl shadow-sm p-8 text-center">
+                    <i data-feather="smartphone" class="w-10 h-10 text-gray-800 mx-auto"></i>
+                    <h3 class="mt-4 text-xl font-semibold">SMS Simulation</h3>
+                    <p class="mt-1 text-gray-600">This shows how your customer receives the notification. The SMS contains a secure link to their personalized application status page.</p>
+                    <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-gray-900 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300 flex items-center justify-center gap-2 text-sm uppercase tracking-wider" onclick="continueToCustomerJourney()">
+                            <i data-feather="play" class="w-4 h-4"></i>
+                            Continue Customer Journey
+                        </button>
+                        <button class="bg-white text-gray-900 font-medium py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2 text-sm uppercase tracking-wider" onclick="goBackToRetailer()">
+                             <i data-feather="arrow-left" class="w-4 h-4"></i>
+                            Back to Retailer Portal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function goBack() {
+            window.location.href = 'retailer-portal.html';
+        }
+
+        function goBackToRetailer() {
+            window.location.href = 'retailer-portal.html';
+        }
+
+        function continueToCustomerJourney() {
+            const orderRef = localStorage.getItem('latestOrderRef') || 'JLR-2025-001236';
+            const customerEmail = localStorage.getItem('customerEmail') || 'max.mustermann@email.com';
+            const customerName = localStorage.getItem('customerName') || 'Max Mustermann';
+            
+            localStorage.setItem('customerType', 'new');
+            localStorage.setItem('fromSMS', 'true');
+            localStorage.setItem('orderReference', orderRef);
+            localStorage.setItem('customerEmail', customerEmail);
+            localStorage.setItem('customerName', customerName);
+            
+            window.location.href = 'enhanced-signin.html?source=sms&ref=' + orderRef;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            const orderRef = localStorage.getItem('latestOrderRef');
+            const customerName = localStorage.getItem('customerName');
+            
+            if (orderRef) {
+                document.getElementById('orderRef').textContent = orderRef;
+            }
+            
+            if (customerName) {
+                // Use first name only for a more personal touch
+                document.getElementById('customerName').textContent = customerName.split(' ')[0];
+            }
+        });
+    </script>
+</body>
+</html>

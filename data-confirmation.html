@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLR Total Care - Confirm Your Details</title>
+    <link rel="icon" type="image/png" href="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* Applying the brand font and background */
+        body {
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-700 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-start items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-4" style="text-decoration: none;">
+                        <img src="https://image4.owler.com/logo/jlr_owler_20240401_094134_original.png" alt="JLR Logo" class="h-8 w-auto">
+                        <span class="border-l border-gray-700 h-6"></span>
+                        <span class="font-semibold text-sm tracking-widest uppercase text-white">Total Care</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-20 flex-grow">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <!-- Header -->
+                <div class="bg-gray-800 text-white p-8 text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="check-circle" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h1 class="text-3xl font-light">Confirm Your Details</h1>
+                    <p class="text-gray-300 mt-1">Please review and confirm your vehicle and personal information.</p>
+                </div>
+
+                <!-- Progress -->
+                <div class="p-8 border-b border-gray-200">
+                    <div class="bg-gray-200 h-2 rounded-full overflow-hidden">
+                        <div class="bg-gray-900 h-full w-3/5 rounded-full"></div>
+                    </div>
+                    <p class="mt-2 text-center text-xs text-gray-500 uppercase tracking-wider">Step 3 of 5: Information Confirmation</p>
+                </div>
+                
+                <!-- Vehicle Section -->
+                <div class="p-8 border-b border-gray-200">
+                     <div class="flex flex-col md:flex-row items-center gap-8">
+                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Evoque" alt="Range Rover Evoque" class="w-full md:w-1/3 h-auto rounded-lg shadow-md">
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-semibold" id="vehicleTitle">Range Rover Evoque MY25</h2>
+                            <p class="text-gray-600">Your selected vehicle configuration</p>
+                            <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
+                                <div class="bg-gray-50 p-3 rounded-md"><span class="font-semibold block text-gray-500 text-xs">Engine</span> 2.0L Petrol</div>
+                                <div class="bg-gray-50 p-3 rounded-md"><span class="font-semibold block text-gray-500 text-xs">Power</span> 249 HP</div>
+                                <div class="bg-gray-50 p-3 rounded-md"><span class="font-semibold block text-gray-500 text-xs">Transmission</span> Automatic</div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Details Section -->
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Personal & Address Info -->
+                        <div class="space-y-6">
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="font-semibold flex items-center gap-2 mb-3"><i data-feather="user" class="w-5 h-5 text-gray-500"></i>Personal Information</h3>
+                                <dl class="text-sm space-y-2">
+                                    <div class="flex justify-between"><dt class="text-gray-600">Full Name:</dt><dd class="font-medium text-gray-900" id="customerName">Max Mustermann</dd></div>
+                                    <div class="flex justify-between"><dt class="text-gray-600">Email:</dt><dd class="font-medium text-gray-900" id="customerEmail">max.mustermann@email.com</dd></div>
+                                    <div class="flex justify-between"><dt class="text-gray-600">Phone:</dt><dd class="font-medium text-gray-900">+49 30 12345678</dd></div>
+                                </dl>
+                            </div>
+                             <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="font-semibold flex items-center gap-2 mb-3"><i data-feather="home" class="w-5 h-5 text-gray-500"></i>Address Information</h3>
+                                <dl class="text-sm space-y-2">
+                                    <div class="flex justify-between"><dt class="text-gray-600">Street:</dt><dd class="font-medium text-gray-900">Musterstraße 123</dd></div>
+                                    <div class="flex justify-between"><dt class="text-gray-600">City:</dt><dd class="font-medium text-gray-900">Berlin, 10115</dd></div>
+                                    <div class="flex justify-between"><dt class="text-gray-600">Country:</dt><dd class="font-medium text-gray-900">Germany</dd></div>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- Order Summary -->
+                        <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+                            <h3 class="font-semibold flex items-center gap-2 mb-4 text-blue-800"><i data-feather="shopping-cart" class="w-5 h-5"></i>Order Summary</h3>
+                            <dl class="text-sm space-y-3">
+                                <div class="flex justify-between"><dt class="text-gray-600">Order Reference:</dt><dd class="font-medium text-gray-900" id="displayOrderRef">JLR-2025-001236</dd></div>
+                                <div class="flex justify-between"><dt class="text-gray-600">Vehicle Price:</dt><dd class="font-medium text-gray-900">€52,950</dd></div>
+                                <div class="flex justify-between"><dt class="text-gray-600">Finance Type:</dt><dd class="font-medium text-gray-900">Personal Contract Purchase</dd></div>
+                                <div class="flex justify-between"><dt class="text-gray-600">Monthly Payment:</dt><dd class="font-medium text-gray-900">€399/month</dd></div>
+                                <div class="flex justify-between pt-3 border-t border-blue-200 mt-3 font-semibold text-base"><dt class="text-blue-900">Estimated Delivery:</dt><dd class="text-blue-900">6-8 weeks</dd></div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Section -->
+                <div class="bg-gray-50 p-6 border-t border-gray-200">
+                    <p class="text-center text-sm text-gray-600 mb-4">Please review all information carefully. Once confirmed, your application will proceed.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                         <button class="bg-white text-gray-900 font-medium py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2 text-sm uppercase tracking-wider" onclick="editInformation()">
+                             <i data-feather="edit-2" class="w-4 h-4"></i>
+                            Edit Information
+                        </button>
+                        <button class="bg-gray-900 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-300 flex items-center justify-center gap-2 text-sm uppercase tracking-wider" onclick="confirmAndContinue()">
+                            <i data-feather="check" class="w-4 h-4"></i>
+                            Confirm & Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-transparent text-gray-500 text-xs text-center py-4 mt-auto">
+        <p>© 2025 Jaguar Land Rover. All rights reserved. | Total Care Digital Platform</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderRef = urlParams.get('ref') || localStorage.getItem('orderReference') || 'JLR-2025-001236';
+            const customerEmail = localStorage.getItem('customerEmail') || 'max.mustermann@email.com';
+            const customerName = localStorage.getItem('customerName') || 'Max Mustermann';
+
+            document.getElementById('displayOrderRef').textContent = orderRef;
+            document.getElementById('customerEmail').textContent = customerEmail;
+            document.getElementById('customerName').textContent = customerName;
+
+            localStorage.setItem('orderReference', orderRef);
+            localStorage.setItem('customerEmail', customerEmail);
+            localStorage.setItem('customerName', customerName);
+        });
+
+        function editInformation() {
+            // In a real app, this would likely go back to a previous step or open a modal
+            alert('Edit functionality would allow you to modify your information.');
+        }
+
+        function confirmAndContinue() {
+            localStorage.setItem('dataConfirmed', 'true');
+            localStorage.setItem('financeStatus', 'processing');
+            const orderRef = localStorage.getItem('orderReference');
+            window.location.href = 'finance-processing.html?ref=' + orderRef;
+        }
+    </script>
+</body>
+</html>
